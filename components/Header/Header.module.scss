@@ -1,0 +1,26 @@
+@import '../../styles//colors.scss';
+
+.header{
+    top: 0;
+    width: 100%;
+  
+    border-bottom: 1px solid #e5e5e5;
+    position: fixed;
+    background-color: white;
+    z-index: 20;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: $light-blue;
+
+    .headerWrapper {
+        max-width: 1440px;
+        width: 100%;
+        padding: 0 48px;
+        box-sizing: border-box;
+        margin: 0 auto;
+    
+        @media (max-width: "768px") {
+          padding: 0 16px;
+        }
+    }
+}

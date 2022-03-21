@@ -1,0 +1,16 @@
+@import '../../styles//colors.scss';
+
+.main__wrapper{
+    .main {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 95vh;
+    }
+    .footer {
+      margin-top: auto;
+      text-align: center;
+      background-color: $main;
+      padding: 10px 0;
+    }
+  }

@@ -1,0 +1,50 @@
+@import '../../styles/colors.scss';
+
+.nav{
+    color: $white;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    .list{
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        li{
+            cursor: pointer;
+            padding: 0 10px;
+            a:hover{
+                color: $green;
+                transition: 0.35s all ease;
+            }
+        }
+        ul{
+            display: flex;
+        }
+        .logOut{
+            display: flex;
+            & div{
+                padding-left: 20px;
+                span{
+                    color: $green;
+                }
+            }
+            .logoutBtn{
+                padding: 0 20px;
+                border: none;
+                background-color: inherit;
+                cursor: pointer;
+                border-radius: 8px;
+                margin-left: 10px;
+                font-size: inherit;
+                font-weight: inherit;
+                letter-spacing: inherit;
+                color: #fff;
+                &:hover{
+                    background-color: $white;
+                    color: $green;
+                    transition: 0.35s all ease;
+                }
+            }
+        }
+    }
+}
