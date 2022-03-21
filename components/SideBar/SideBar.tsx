@@ -1,36 +1,44 @@
 import React, { useEffect, useState } from 'react';
-import styles from '../../styles/SideBar.module.scss';
+import style from './SideBar.module.scss';
 import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import cn from 'classnames';
 import { useDispatch } from 'react-redux';
 // import * as types from '../../redux/actions/types';
 // import { saveStartDate } from '../../redux/actions/actions';
 import { useSelector } from 'react-redux';
 import { useTypedSelector } from '../hooks/useTypedSelector';
+import Button from '../Button/Button';
+import { setStartDate, toggleModal } from '../../store/actions/actions';
 
 const SideBar: React.FC = () => {
-  const sideBarStyle = cn(styles.sidebar);
+  const sideBarStyle = cn(style.sidebar);
   const dispatch = useDispatch();
+
   const handleMakeTask = () => {
-    // dispatch({ type: types.TOGGLE_MODAL });
+    dispatch(toggleModal());
   };
-  const {modalShow} = useTypedSelector((state) => state.task)
+  const { dateWasMade } = useTypedSelector((state) => state.task);
 
-
-  const setStartDate = (date) => {
-    dispatch(saveStartDate(date));
+  const setStart = (startDate: any) => {
+    dispatch(setStartDate(startDate));
   };
+  // useEffect(() => {
+  //   dispatch(setStartDate(new Date()))
+  // })
   return (
     <>
       <div className={sideBarStyle}>
         <DatePicker
-          selected={startDate}
+          selected={dateWasMade}
           inline
-          onChange={(date) => setStartDate(date)}
+          onChange={(date) => setStart(date)}
         />
-        <button onClick={handleMakeTask} className={styles.makeTaskBtn}>
-          Make New Task
-        </button>
+        <Button
+          className={style.makeTaskBtn}
+          text='Make New Task'
+          onClick={handleMakeTask}
+        />
       </div>
     </>
   );
