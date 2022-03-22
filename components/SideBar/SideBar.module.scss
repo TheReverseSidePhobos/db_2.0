@@ -3,21 +3,8 @@
 .sidebar {
   padding: 0 10px;
   max-width: 1440px;
-  margin: 50px auto auto 0;
-}
-
-.makeTaskBtn {
-  margin-top: 10px;
-  border: 2px solid $gray;
-  padding: 5px 32px;
-  border-radius: 12px;
-  outline: none;
-  background-color: inherit;
-  font-size: 20px;
-  letter-spacing: 2.5px;
-  &:hover {
-    cursor: pointer;
-    color: $green;
-    transition: 0.3s all ease;
+  margin: 0 auto;
+  .btnWrapper {
+    margin: 12.8px 0;
   }
 }

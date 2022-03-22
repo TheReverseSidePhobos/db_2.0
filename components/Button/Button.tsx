@@ -41,7 +41,7 @@ const Button: React.FC<IButtonProps> = ({
       <button
         ref={ref}
         style={styleInline}
-        className={cn(style.main, className, {
+        className={cn(style.button, className, {
           //disabled
           [style.disabled]: disabled,
           //sizes

@@ -1,0 +1,123 @@
+@import '../../styles/colors.scss';
+
+.colomn {
+  margin: 0 10px;
+  min-width: 350px;
+  min-height: 100vh;
+  @media (max-width: '1400px') {
+    min-width: 310px;
+  }
+  @media (max-width: '1280px') {
+    min-width: 280px;
+  }
+  @media (max-width: '1160px') {
+    min-width: 254px;
+  }
+  @media (max-width: '1120px') {
+    min-height: 300px;
+  }
+}
+.title {
+  font-size: 24px;
+  text-align: center;
+}
+.card {
+  width: 260px;
+  min-height: 300px;
+  height: 100%;
+  border-radius: 12px;
+  background-color: rgb(241, 247, 243);
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  margin: 20px auto;
+  padding: 10px;
+  cursor: pointer;
+  @media (max-width: '1200px') {
+    width: 240px;
+  }
+  @media (max-width: '1120px') {
+    width: 300px;
+  }
+  @media (max-width: '968px') {
+    width: 240px;
+  }
+  @media (max-width: '847px') {
+    width: 400px;
+  }
+  @media (max-width: '460px') {
+    width: 300px;
+  }
+  @media (max-width: '360px') {
+    width: 260px;
+  }
+}
+.card__btn {
+  border: none;
+  background-color: rgba(10, 90, 37, 0.158);
+  padding: 8px 18px;
+  border-radius: 5px;
+  font-size: 26px;
+  &:hover {
+    background-color: rgba(10, 90, 37, 0.274);
+    color: $main;
+    cursor: pointer;
+  }
+}
+.buttons {
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
+  transition: all 0.2s linear;
+  &:hover {
+    color: rgb(175, 8, 8);
+    transform: rotate(90deg);
+  }
+}
+.date {
+  text-align: center;
+  font-size: 18px;
+}
+.red {
+  color: red;
+}
+.green {
+  color: green;
+}
+.blue {
+  color: blue;
+}
+.item_title {
+  text-align: center;
+  font-size: 24px;
+}
+.item_text {
+  text-align: center;
+  font-size: 18px;
+}
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.item__priority {
+  font-size: 18px;
+}
+.detailed {
+  margin: 10px 0;
+  padding: 10px 0;
+  cursor: pointer;
+  font-size: 26px;
+  text-align: center;
+  background-color: rgba(10, 90, 37, 0.158);
+  &:hover {
+    background-color: rgba(10, 90, 37, 0.274);
+    color: $main;
+  }
+}

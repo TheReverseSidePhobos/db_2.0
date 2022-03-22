@@ -64,3 +64,9 @@ export const saveTask = (task: Date) => {
     payload: task
   };
 };
+export const updateTasks = (tasks: []) => {
+  return {
+    type: TaskActionTypes.SAVE_TASK,
+    payload: tasks
+  };
+};

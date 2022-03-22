@@ -19,7 +19,8 @@ export enum TaskActionTypes {
   TOGGLE_MODAL = 'TOGGLE_MODAL',
   SAVE_TASK = 'SAVE_TASK',
   SAVE_DATE_WAS_MADE = 'SAVE_DATE_WAS_MADE',
-  SAVE_DATE_FINIHED = 'SAVE_DATE_FINIHED'
+  SAVE_DATE_FINIHED = 'SAVE_DATE_FINIHED',
+  UPDATE_TASKS = 'UPDATE_TASKS'
 }
 
 interface FetchTaskAction {
@@ -42,15 +43,19 @@ interface toggleModal {
 }
 interface saveTask {
   type: TaskActionTypes.SAVE_TASK;
-  payload: object
+  payload: object;
 }
 interface saveDateWasMade {
   type: TaskActionTypes.SAVE_DATE_WAS_MADE;
-  payload: Date
+  payload: Date;
 }
 interface saveDateFinished {
   type: TaskActionTypes.SAVE_DATE_FINIHED;
-  payload: Date
+  payload: Date;
+}
+interface updateTasks {
+  type: TaskActionTypes.UPDATE_TASKS;
+  payload: [];
 }
 
 export type TaskAction =
@@ -61,4 +66,5 @@ export type TaskAction =
   | toggleModal
   | saveTask
   | saveDateWasMade
-  | saveDateFinished;
+  | saveDateFinished
+  | updateTasks;

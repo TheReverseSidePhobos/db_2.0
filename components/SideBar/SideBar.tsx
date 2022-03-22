@@ -18,7 +18,10 @@ const SideBar: React.FC = () => {
   const handleMakeTask = () => {
     dispatch(toggleModal());
   };
-  const { dateWasMade } = useTypedSelector((state) => state.task);
+  const handleSaveToDb = () => {
+    alert('here will be saving to db soon');
+  };
+  const { dateWasMade, tasks } = useTypedSelector((state) => state.task);
 
   const setStart = (startDate: any) => {
     dispatch(setStartDate(startDate));
@@ -34,11 +37,24 @@ const SideBar: React.FC = () => {
           inline
           onChange={(date) => setStart(date)}
         />
-        <Button
-          className={style.makeTaskBtn}
-          text='Make New Task'
-          onClick={handleMakeTask}
-        />
+        <div className={style.btnWrapper}>
+          <Button
+            size="lg"
+            type={'accept'}
+            text="Make New Task"
+            onClick={handleMakeTask}
+          />
+        </div>
+        {tasks && tasks.length > 0 && (
+          <div className={style.btnWrapper}>
+            <Button
+              size={'lg'}
+              type={'critical'}
+              text="Save tasks for this user"
+              onClick={handleSaveToDb}
+            />
+          </div>
+        )}
       </div>
     </>
   );
