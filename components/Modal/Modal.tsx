@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 // import { saveStartDate, saveTask } from '../../redux/actions/actions';
 import { useTypedSelector } from '../../components/hooks/useTypedSelector';
 import { Formik, Field, Form } from 'formik';
-import { toggleInfoModal, toggleModal } from '../../store/actions/actions';
+import { add_task_to_redux, toggleInfoModal, toggleModal } from '../../store/actions/actions';
 import {
   setFinishDate,
   setStartDate,
@@ -41,7 +41,7 @@ const Modal = () => {
   }, []);
 
   const handleSubmit = (task: any) => {
-    dispatch(saveTask(task));
+    dispatch(add_task_to_redux(task));
   };
   if (infoModalShow) {
     return (

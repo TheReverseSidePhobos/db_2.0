@@ -12,10 +12,12 @@ import {
   toggleModal
 } from '../../store/actions/actions';
 import Cookie from 'js-cookie';
+import { compare } from '../../utils/ustils';
 
 const SideBar: React.FC = () => {
   const sideBarStyle = cn(style.sidebar);
   const dispatch = useDispatch();
+  
   const { dateWasMade, tasks } = useTypedSelector((state) => state.task);
 
   const handleMakeTask = () => {
@@ -30,6 +32,8 @@ const SideBar: React.FC = () => {
     }, 3000);
     // disable btn add class
   };
+  
+
 
   const setStart = (startDate: any) => {
     dispatch(setStartDate(startDate));

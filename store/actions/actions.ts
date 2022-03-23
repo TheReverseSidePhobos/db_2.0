@@ -73,8 +73,20 @@ export const saveTask = (task: Date) => {
 };
 export const updateTasks = (tasks: []) => {
   return {
-    type: TaskActionTypes.SAVE_TASK,
+    type: TaskActionTypes.UPDATE_TASKS,
     payload: tasks
+  };
+};
+export const add_to_redux_from_db = (task: any) => {
+  return {
+    type: TaskActionTypes.SAVE_TASKS_REDUX_TO_REDUX,
+    payload: task
+  };
+};
+export const add_task_to_redux = (task: any) => {
+  return {
+    type: TaskActionTypes.SAVE_TASK_REDUX,
+    payload: task
   };
 };
 

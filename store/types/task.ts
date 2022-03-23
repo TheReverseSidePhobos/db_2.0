@@ -27,6 +27,8 @@ export enum TaskActionTypes {
   UPDATE_TASKS = 'UPDATE_TASKS',
   SAVE_OBJECT_FOR_INFO = 'SAVE_OBJECT_FOR_INFO',
   ALERT_SHOW = 'ALERT_SHOW',
+  SAVE_TASKS_REDUX_TO_REDUX = 'SAVE_TASKS_REDUX_TO_REDUX',
+  SAVE_TASK_REDUX = 'SAVE_TASK_REDUX',
 }
 interface IinfoObj {
   id?: number;
@@ -38,6 +40,14 @@ interface IinfoObj {
 }
 interface FetchTaskAction {
   type: TaskActionTypes.FETCH_TASKS;
+}
+interface saveTaskRedux {
+  type: TaskActionTypes.SAVE_TASK_REDUX;
+  payload: any
+}
+interface saveTasksToRedux {
+  type: TaskActionTypes.SAVE_TASKS_REDUX_TO_REDUX;
+  payload: any
 }
 interface FetchTaskSuccessAction {
   type: TaskActionTypes.FETCH_TASKS_SUCCESS;
@@ -97,4 +107,6 @@ export type TaskAction =
   | updateTasks
   | saveObjectForInfo
   | toggleInfoModal
-  | alertShow;
+  | alertShow
+  | saveTaskRedux
+  | saveTasksToRedux;

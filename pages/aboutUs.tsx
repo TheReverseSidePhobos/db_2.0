@@ -1,14 +1,11 @@
-import React from 'react'
-import Alert from '../components/Alert/Alert'
+import React from 'react';
 
 const aboutUs: React.FC = () => {
   return (
-    <div>
+    <div className="container">
       <h1>aboutUs</h1>
-
-      <Alert/>
     </div>
-  )
-}
+  );
+};
 
-export default aboutUs
+export default aboutUs;

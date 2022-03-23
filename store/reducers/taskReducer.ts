@@ -58,10 +58,10 @@ export const taskReducer = (
         ...state,
         dateFinish: action.payload
       };
-    case TaskActionTypes.SAVE_TASK:
+    case TaskActionTypes.UPDATE_TASKS:
       return {
         ...state,
-        tasks: [...state.tasks, action.payload]
+        tasks: action.payload
       };
     case TaskActionTypes.SAVE_OBJECT_FOR_INFO:
       return {
@@ -72,6 +72,16 @@ export const taskReducer = (
       return {
         ...state,
         alertShow: action.payload
+      };
+    case TaskActionTypes.SAVE_TASK_REDUX:
+      return {
+        ...state,
+        tasks: [...state.tasks, action.payload]
+      };
+    case TaskActionTypes.SAVE_TASKS_REDUX_TO_REDUX:
+      return {
+        ...state,
+        tasks: [...state.tasks, action.payload]
       };
 
     default:

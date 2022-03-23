@@ -5,7 +5,7 @@ import { convertDateFunc } from '../../utils/ustils';
 import {
   toggleInfoModal,
   saveObjForInfo,
-  updateTasks,
+  updateTasks
 } from '../../store/actions/actions';
 import { useSelector } from 'react-redux';
 
@@ -19,7 +19,6 @@ const Column = ({ position, inner_tasks }) => {
       : position == 'done'
       ? 'Done'
       : null;
-
   const handeDeleteBtn = (id, inner_tasks) => {
     let taskIndex = inner_tasks.findIndex((item) => item.id == id);
     if (taskIndex !== -1) {
@@ -36,7 +35,7 @@ const Column = ({ position, inner_tasks }) => {
         item.position = position;
       }
     });
-    
+
     dispatch(updateTasks(tasks));
   };
 
@@ -63,12 +62,12 @@ const Column = ({ position, inner_tasks }) => {
   const dragStartHandle = (e, item, position) => {
     localStorage.setItem('item', JSON.stringify(item));
   };
-  
+
   const drapHandle = (e, position) => {
     let i = JSON.parse(localStorage.getItem('item'));
     changePosition(i.id, position, tasks);
   };
-  
+
   return (
     <>
       <div
@@ -102,23 +101,21 @@ const Column = ({ position, inner_tasks }) => {
 
                   <h5
                     className={
-                      item.taskPriority == 'lowest'
+                      item.priority == 'lowest'
                         ? 'priority green'
-                        : item.taskPriority == 'low'
+                        : item.priority == 'low'
                         ? 'priority green'
-                        : item.taskPriority == 'medium'
+                        : item.priority == 'medium'
                         ? 'priority blue'
-                        : item.taskPriority == 'high'
+                        : item.priority == 'high'
                         ? 'priority red'
-                        : item.taskPriority == 'highest'
+                        : item.priority == 'highest'
                         ? 'priority red'
                         : 'priority'
                     }
                   ></h5>
 
-                  <div className={styles.item__priority}>
-                    {item.taskPriority}
-                  </div>
+                  <div className={styles.item__priority}>{item.priority}</div>
                   <h3 className={styles.item_title}>{item.name}</h3>
                   <br />
                   <div className={styles.item_text}>
@@ -141,6 +138,7 @@ const Column = ({ position, inner_tasks }) => {
                       {convertDateFunc(item.dateFinish)}
                     </span>
                   </div>
+
                   <div className={styles.buttons}>
                     <button
                       className={styles.card__btn}
