@@ -28,7 +28,7 @@ const HeaderNav : React.FC = () => {
                             </a>
                             </Link>
                         </li>
-                        <li>
+                        <li className={style.aboutLink}>
                             <Link href={'/aboutUs'}>
                             <a>
                                 About Us

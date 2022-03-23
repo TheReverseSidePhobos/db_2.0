@@ -4,7 +4,7 @@ export const convertDateFunc = (date: any) => {
   let yaer = d.getFullYear();
   let month = d.getMonth() + 1;
   let day = d.getDate();
-  let stringCorrectDate = `${day} : ${month} : ${yaer}`;
+  let stringCorrectDate = `${day}.0${month}.${yaer}`;
   return stringCorrectDate;
 };
 

@@ -21,6 +21,14 @@ const Home: NextPage = () => {
   const new_tasks = tasks.filter((task) => task.position == 'new');
   const progress_tasks = tasks.filter((task) => task.position == 'progress');
   const done_tasks = tasks.filter((task) => task.position == 'done');
+// debugger
+//   const sorting = (sortingArr: any[], value: string, position_name: string) => {
+//     debugger
+//     return sortingArr.sort(function(a: any,b: any){return b.dateWasMade - a.dateWasMade});
+//   }
+//   debugger
+//   const sortedArr = sorting(new_tasks, 'By Date', 'New Tasks');
+
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -30,7 +38,9 @@ const Home: NextPage = () => {
 
       jsonObj.forEach((el: any) => {
         let isInRedux = tasks.find((task) => task.id == el.id);
-        dispatch(add_to_redux_from_db(el));
+        if (!isInRedux) {
+          dispatch(add_to_redux_from_db(el));
+        }
       });
     }
   }, []);

@@ -55,6 +55,7 @@ const Button: React.FC<IButtonProps> = ({
           [style.lilPrimary]: type === "lil-primary",
           [style.ghost]: type === "ghost",
           [style.critical]: type === "critical",
+          [style.accept]: type === "accept",
           [style.lilCritical]: type === "lil-critical",
           [style.points]: type === "points",
           [style.circle]: circle,

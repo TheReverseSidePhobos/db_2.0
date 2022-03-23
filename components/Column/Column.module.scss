@@ -16,13 +16,41 @@
   @media (max-width: '1120px') {
     min-height: 300px;
   }
+  .selectContainer{
+    max-width: 100px;
+    margin: 20px auto;
+    .select{
+      // box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+      padding: 1px;
+      border: none;
+      outline: none;
+      border-radius: 12px;
+      font-size: 14px;
+      width: 100%;
+      text-align-last: center;
+      cursor: pointer;
+    }
+  }
 }
 .title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  margin: 0 auto;
+  padding-bottom: 4px;
+  border-bottom: 4px solid $light-blue;
   font-size: 24px;
   text-align: center;
+  cursor: pointer;
+  &:hover{
+    transition: all 0.3s ease;
+    border-bottom: 4px solid $light-green;
+    
+  }
 }
 .card {
-  width: 260px;
+  width: 80%;
   min-height: 300px;
   height: 100%;
   border-radius: 12px;
@@ -50,7 +78,14 @@
     width: 260px;
   }
 }
-
+.startDate{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .date{
+    margin-left: 10px;
+  }
+}
 .card__btn {
   border: none;
   background-color: rgba(10, 90, 37, 0.158);

@@ -39,6 +39,10 @@
     background-color: $light-blue;
     color: $white;
   }
+  &.primary {
+    background-color: $light-green;
+    color: $white;
+  }
   &.disabled {
     background-color: $gray;
     color: $white;

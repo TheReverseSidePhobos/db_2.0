@@ -12,7 +12,6 @@ import {
   toggleModal
 } from '../../store/actions/actions';
 import Cookie from 'js-cookie';
-import { compare } from '../../utils/ustils';
 
 const SideBar: React.FC = () => {
   const sideBarStyle = cn(style.sidebar);
@@ -33,8 +32,6 @@ const SideBar: React.FC = () => {
     // disable btn add class
   };
   
-
-
   const setStart = (startDate: any) => {
     dispatch(setStartDate(startDate));
   };
@@ -42,11 +39,14 @@ const SideBar: React.FC = () => {
   return (
     <>
       <div className={sideBarStyle}>
-        <DatePicker
-          selected={dateWasMade}
-          inline
-          onChange={(date) => setStart(date)}
-        />
+        <div className={style.dp}>
+          <DatePicker
+            selected={dateWasMade}
+            inline
+            onChange={(date) => setStart(date)}
+          />
+
+        </div>
         <div className={style.btnWrapper}>
           <Button
             size="lg"
@@ -59,7 +59,7 @@ const SideBar: React.FC = () => {
           <div className={style.btnWrapper}>
             <Button
               size={'lg'}
-              type={'critical'}
+              type={'primary'}
               text="Save tasks for this user"
               onClick={() => handleSaveToCookie(tasks)}
             />
