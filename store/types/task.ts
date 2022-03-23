@@ -1,4 +1,7 @@
 export interface taskState {
+  alertShow?: boolean;
+  infoModalShow?: boolean;
+  infoObj?: IinfoObj | null;
   modalShow?: boolean;
   tasks: any[];
   loading: boolean;
@@ -17,12 +20,22 @@ export enum TaskActionTypes {
   FETCH_TASKS_ERROR = 'FETCH_TASKS_ERROR',
   SET_AUTH = 'SET_AUTH',
   TOGGLE_MODAL = 'TOGGLE_MODAL',
+  TOGGLE_INFO_MODAL = 'TOGGLE_INFO_MODAL',
   SAVE_TASK = 'SAVE_TASK',
   SAVE_DATE_WAS_MADE = 'SAVE_DATE_WAS_MADE',
   SAVE_DATE_FINIHED = 'SAVE_DATE_FINIHED',
-  UPDATE_TASKS = 'UPDATE_TASKS'
+  UPDATE_TASKS = 'UPDATE_TASKS',
+  SAVE_OBJECT_FOR_INFO = 'SAVE_OBJECT_FOR_INFO',
+  ALERT_SHOW = 'ALERT_SHOW',
 }
-
+interface IinfoObj {
+  id?: number;
+  name?: string;
+  description?: string;
+  priority?: string;
+  dateFinish?: null | Date;
+  dateWasMade?: null | Date;
+}
 interface FetchTaskAction {
   type: TaskActionTypes.FETCH_TASKS;
 }
@@ -40,6 +53,11 @@ interface setAuth {
 }
 interface toggleModal {
   type: TaskActionTypes.TOGGLE_MODAL;
+  payload: boolean;
+}
+interface toggleInfoModal {
+  type: TaskActionTypes.TOGGLE_INFO_MODAL;
+  payload: boolean;
 }
 interface saveTask {
   type: TaskActionTypes.SAVE_TASK;
@@ -58,6 +76,15 @@ interface updateTasks {
   payload: [];
 }
 
+interface saveObjectForInfo {
+  type: TaskActionTypes.SAVE_OBJECT_FOR_INFO;
+  payload: {};
+}
+interface alertShow {
+  type: TaskActionTypes.ALERT_SHOW;
+  payload: boolean;
+}
+
 export type TaskAction =
   | FetchTaskAction
   | FetchTaskSuccessAction
@@ -67,4 +94,7 @@ export type TaskAction =
   | saveTask
   | saveDateWasMade
   | saveDateFinished
-  | updateTasks;
+  | updateTasks
+  | saveObjectForInfo
+  | toggleInfoModal
+  | alertShow;

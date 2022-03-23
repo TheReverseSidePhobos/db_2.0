@@ -1,4 +1,4 @@
-export const convertDateFunc = (date: string) => {
+export const convertDateFunc = (date: any) => {
   let newDate = Date.parse(date);
   let d = new Date(newDate);
   let yaer = d.getFullYear();

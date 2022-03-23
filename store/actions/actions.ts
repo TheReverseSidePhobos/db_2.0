@@ -41,12 +41,19 @@ export const setUser = (user: any) => {
     payload: user
   };
 };
-export const toggleModal = () => {
+export const toggleModal = (bool: any) => {
   return {
-    type: TaskActionTypes.TOGGLE_MODAL
+    type: TaskActionTypes.TOGGLE_MODAL,
+    payload: bool
   };
 };
-export const setStartDate = (dateStarted: Date) => {
+export const toggleInfoModal = (bool: any) => {
+  return {
+    type: TaskActionTypes.TOGGLE_INFO_MODAL,
+    payload: bool
+  };
+};
+export const setStartDate = (dateStarted: Date | null) => {
   return {
     type: TaskActionTypes.SAVE_DATE_WAS_MADE,
     payload: dateStarted
@@ -68,5 +75,18 @@ export const updateTasks = (tasks: []) => {
   return {
     type: TaskActionTypes.SAVE_TASK,
     payload: tasks
+  };
+};
+
+export const saveObjForInfo = (infoObj: {}) => {
+  return {
+    type: TaskActionTypes.SAVE_OBJECT_FOR_INFO,
+    payload: infoObj
+  };
+};
+export const alertShow = (bool: boolean) => {
+  return {
+    type: TaskActionTypes.ALERT_SHOW,
+    payload: bool
   };
 };

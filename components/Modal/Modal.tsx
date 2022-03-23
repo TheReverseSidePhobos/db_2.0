@@ -1,26 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import style from './Modal.module.scss';
-import DatePicker from 'react-datepicker';
 import { useDispatch } from 'react-redux';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 // import * as types from '../../redux/actions/types';
 import { useSelector } from 'react-redux';
 // import { saveStartDate, saveTask } from '../../redux/actions/actions';
 import { useTypedSelector } from '../../components/hooks/useTypedSelector';
 import { Formik, Field, Form } from 'formik';
-import { toggleModal } from '../../store/actions/actions';
-import { setFinishDate, setStartDate, saveTask} from '../../store/actions/actions';
+import { toggleInfoModal, toggleModal } from '../../store/actions/actions';
+import {
+  setFinishDate,
+  setStartDate,
+  saveTask
+} from '../../store/actions/actions';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import { convertDateFunc } from '../../utils/ustils';
 
 const Modal = () => {
   const dispatch = useDispatch();
 
-  const { dateFinish, dateWasMade, tasks } = useTypedSelector(
-    (state) => state.task
-  );
+  const { dateFinish, dateWasMade, tasks, infoModalShow, infoObj } =
+    useTypedSelector((state) => state.task);
 
   const handleCloseModal = () => {
-    dispatch(toggleModal());
+    dispatch(toggleInfoModal(false));
+    dispatch(toggleModal(false));
   };
 
   const setDateFinish = (dateFinished: any) => {
@@ -37,6 +43,61 @@ const Modal = () => {
   const handleSubmit = (task: any) => {
     dispatch(saveTask(task));
   };
+  if (infoModalShow) {
+    return (
+      <div id={style.popup} className={style.popup}>
+        <div className={style.popup__body}>
+          <div className={style.popup__content}>
+            <span onClick={handleCloseModal} className={style.popup__close}>
+              X
+            </span>
+            <div className={style.popup__title}>Task Details</div>
+            <div className={style.popup__body}>
+              <div className={style.datePicker}>
+                <div className={style.info_container}>
+                  <div className={style.date_picker}>
+                    <DatePicker
+                      name="dp"
+                      inline
+                      selected={dateFinish}
+                      onChange={(date) => setStartDate(date)}
+                    />
+                  </div>
+                  <div className={style.text_fields}>
+                    <div>
+                      <input
+                        className={style.inp}
+                        type="text"
+                        value={infoObj?.name}
+                      />
+                    </div>
+                    <div>
+                      <input
+                        className={style.inp}
+                        type="text"
+                        value={infoObj?.priority}
+                      />
+                    </div>
+                    <div>
+                      <textarea
+                        className={style.txta}
+                        // type="text"
+                        value={infoObj?.description}
+                      ></textarea>
+                    </div>
+                    <div className={style.complitedDate}>
+                      <label>Must be complited for</label> <br />
+                      {convertDateFunc(infoObj?.dateFinish)}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div id={style.popup} className={style.popup}>
       <div className={style.popup__body}>
@@ -54,7 +115,6 @@ const Modal = () => {
               }}
               onSubmit={(values, { resetForm }) => {
                 const { name, description, priority } = values;
-                debugger;
                 let task = {
                   id: tasks.length,
                   name,
@@ -62,7 +122,7 @@ const Modal = () => {
                   priority,
                   dateWasMade,
                   position: 'new',
-                  dateFinish,
+                  dateFinish
                 };
                 handleSubmit(task);
                 resetForm();

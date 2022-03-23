@@ -1,7 +1,10 @@
 import { TaskActionTypes, TaskAction, taskState } from '../types/task';
 
 const initialState: taskState = {
+  alertShow: false,
   modalShow: false,
+  infoModalShow: false,
+  infoObj: null,
   tasks: [],
   loading: false,
   error: '',
@@ -38,7 +41,12 @@ export const taskReducer = (
     case TaskActionTypes.TOGGLE_MODAL:
       return {
         ...state,
-        modalShow: !state.modalShow
+        modalShow: action.payload
+      };
+    case TaskActionTypes.TOGGLE_INFO_MODAL:
+      return {
+        ...state,
+        infoModalShow: action.payload
       };
     case TaskActionTypes.SAVE_DATE_WAS_MADE:
       return {
@@ -55,6 +63,17 @@ export const taskReducer = (
         ...state,
         tasks: [...state.tasks, action.payload]
       };
+    case TaskActionTypes.SAVE_OBJECT_FOR_INFO:
+      return {
+        ...state,
+        infoObj: action.payload
+      };
+    case TaskActionTypes.ALERT_SHOW:
+      return {
+        ...state,
+        alertShow: action.payload
+      };
+
     default:
       return state;
   }

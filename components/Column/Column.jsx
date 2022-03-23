@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux';
 import styles from './Column.module.scss';
 import { convertDateFunc } from '../../utils/ustils';
 import {
-  // infoToggleModalAC,
-  // saveObjForInfo,
-  updateTasks
+  toggleInfoModal,
+  saveObjForInfo,
+  updateTasks,
 } from '../../store/actions/actions';
 import { useSelector } from 'react-redux';
 
@@ -36,6 +36,7 @@ const Column = ({ position, inner_tasks }) => {
         item.position = position;
       }
     });
+    
     dispatch(updateTasks(tasks));
   };
 
@@ -56,7 +57,7 @@ const Column = ({ position, inner_tasks }) => {
 
   const handleInfoModalShow = (item) => {
     dispatch(saveObjForInfo(item));
-    dispatch(infoToggleModalAC());
+    dispatch(toggleInfoModal(true));
   };
 
   const dragStartHandle = (e, item, position) => {

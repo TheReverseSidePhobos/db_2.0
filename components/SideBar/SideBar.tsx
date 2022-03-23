@@ -4,31 +4,37 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import cn from 'classnames';
 import { useDispatch } from 'react-redux';
-// import * as types from '../../redux/actions/types';
-// import { saveStartDate } from '../../redux/actions/actions';
-import { useSelector } from 'react-redux';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import Button from '../Button/Button';
-import { setStartDate, toggleModal } from '../../store/actions/actions';
+import {
+  alertShow,
+  setStartDate,
+  toggleModal
+} from '../../store/actions/actions';
+import Cookie from 'js-cookie';
 
 const SideBar: React.FC = () => {
   const sideBarStyle = cn(style.sidebar);
   const dispatch = useDispatch();
+  const { dateWasMade, tasks } = useTypedSelector((state) => state.task);
 
   const handleMakeTask = () => {
-    dispatch(toggleModal());
+    dispatch(toggleModal(true));
   };
-  const handleSaveToDb = () => {
-    alert('here will be saving to db soon');
+  const handleSaveToCookie = (tasks: any[]) => {
+    let tasksJs = JSON.stringify(tasks);
+    Cookie.set('tasks', tasksJs);
+    dispatch(alertShow(true));
+    setTimeout(() => {
+      dispatch(alertShow(false));
+    }, 3000);
+    // disable btn add class
   };
-  const { dateWasMade, tasks } = useTypedSelector((state) => state.task);
 
   const setStart = (startDate: any) => {
     dispatch(setStartDate(startDate));
   };
-  // useEffect(() => {
-  //   dispatch(setStartDate(new Date()))
-  // })
+
   return (
     <>
       <div className={sideBarStyle}>
@@ -51,7 +57,7 @@ const SideBar: React.FC = () => {
               size={'lg'}
               type={'critical'}
               text="Save tasks for this user"
-              onClick={handleSaveToDb}
+              onClick={() => handleSaveToCookie(tasks)}
             />
           </div>
         )}
