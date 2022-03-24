@@ -9,26 +9,19 @@ import Column from '../components/Column/Column';
 import { useEffect, useState } from 'react';
 import Cookie from 'js-cookie';
 import { useDispatch } from 'react-redux';
-import { add_to_redux_from_db } from '../store/actions/actions';
+import { add_to_redux_from_db, updateTasks } from '../store/actions/actions';
 import Alert from '../components/Alert/Alert';
 import { compare } from '../utils/ustils';
+import Cookies from 'js-cookie';
 
 const Home: NextPage = () => {
   const { modalShow, tasks, infoModalShow, alertShow } = useTypedSelector(
     (state) => state.task
   );
 
-  const new_tasks = tasks.filter((task) => task.position == 'new');
-  const progress_tasks = tasks.filter((task) => task.position == 'progress');
-  const done_tasks = tasks.filter((task) => task.position == 'done');
-// debugger
-//   const sorting = (sortingArr: any[], value: string, position_name: string) => {
-//     debugger
-//     return sortingArr.sort(function(a: any,b: any){return b.dateWasMade - a.dateWasMade});
-//   }
-//   debugger
-//   const sortedArr = sorting(new_tasks, 'By Date', 'New Tasks');
-
+  let new_tasks = tasks.filter((task) => task.position == 'new');
+  let progress_tasks = tasks.filter((task) => task.position == 'progress');
+  let done_tasks = tasks.filter((task) => task.position == 'done');
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -47,9 +40,7 @@ const Home: NextPage = () => {
 
   const [equalArr, setEqualArr] = useState();
 
- 
   useEffect(() => {
-
     let obj = Cookie.get('tasks');
     if (obj) {
       let jsonObj = JSON.parse(obj);
@@ -57,9 +48,43 @@ const Home: NextPage = () => {
       let isEqual = setEqualArr(compare(tasks, jsonObj));
       console.log('equalArr: ', isEqual);
     }
+  }, []);
 
-  }, [])
+  const handleSorting = (option: any, position: any) => {
+    debugger;
+    if (position == 'New Tasks') {
+      let sorted;
+      switch (option) {
+        case 'By Priority ASC':
+          sorted = new_tasks.sort((a, b) =>
+            a.priorityNum < b.priorityNum ? 1 : -1
+          );
+          break;
+        case 'By Priority DESC':
+          sorted = new_tasks.sort((a, b) =>
+            a.priorityNum > b.priorityNum ? 1 : -1
+          );
+          break;
+        case 'By Date ASC':
+          sorted = new_tasks.sort((a, b) =>
+            a.dateWasMade < b.dateWasMade ? 1 : -1
+          );
+          break;
+        case 'By Date DESC':
+          sorted = new_tasks.sort((a, b) =>
+            a.dateWasMade > b.dateWasMade ? 1 : -1
+          );
+          break;
 
+        default:
+          break;
+      }
+
+      dispatch(updateTasks(sorted));
+      let sortedTasks = JSON.stringify(sorted);
+      Cookies.set('tasks', sortedTasks);
+    }
+  };
   return (
     <Layout>
       <Head>
@@ -72,9 +97,21 @@ const Home: NextPage = () => {
           <SideBar />
         </div>
         <div className="columns">
-          <Column position="new" inner_tasks={new_tasks} />
-          <Column position="progress" inner_tasks={progress_tasks} />
-          <Column position="done" inner_tasks={done_tasks} />
+          <Column
+            position="new"
+            inner_tasks={new_tasks}
+            handleSorting={handleSorting}
+          />
+          <Column
+            position="progress"
+            inner_tasks={progress_tasks}
+            handleSorting
+          />
+          <Column
+            position="done"
+            inner_tasks={done_tasks}
+            handleSorting={handleSorting}
+          />
         </div>
         {modalShow && <Modal />}
         {infoModalShow && <Modal />}

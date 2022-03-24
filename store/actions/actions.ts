@@ -71,7 +71,7 @@ export const saveTask = (task: Date) => {
     payload: task
   };
 };
-export const updateTasks = (tasks: []) => {
+export const updateTasks = (tasks: any) => {
   return {
     type: TaskActionTypes.UPDATE_TASKS,
     payload: tasks

@@ -8,7 +8,11 @@ import { useSelector } from 'react-redux';
 // import { saveStartDate, saveTask } from '../../redux/actions/actions';
 import { useTypedSelector } from '../../components/hooks/useTypedSelector';
 import { Formik, Field, Form } from 'formik';
-import { add_task_to_redux, toggleInfoModal, toggleModal } from '../../store/actions/actions';
+import {
+  add_task_to_redux,
+  toggleInfoModal,
+  toggleModal
+} from '../../store/actions/actions';
 import {
   setFinishDate,
   setStartDate,
@@ -115,11 +119,22 @@ const Modal = () => {
               }}
               onSubmit={(values, { resetForm }) => {
                 const { name, description, priority } = values;
+                let priorityNum =
+                  priority == 'lowest'
+                    ? 1
+                    : priority == 'low'
+                    ? 2
+                    : priority == 'medium'
+                    ? 3
+                    : priority == 'high'
+                    ? 4
+                    : 5;
+
                 let task = {
                   id: tasks.length,
                   name,
                   description,
-                  priority,
+                  priorityNum,
                   dateWasMade,
                   position: 'new',
                   dateFinish

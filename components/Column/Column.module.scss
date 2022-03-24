@@ -16,10 +16,10 @@
   @media (max-width: '1120px') {
     min-height: 300px;
   }
-  .selectContainer{
+  .selectContainer {
     max-width: 100px;
     margin: 20px auto;
-    .select{
+    .select {
       // box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
       padding: 1px;
       border: none;
@@ -43,15 +43,14 @@
   font-size: 24px;
   text-align: center;
   cursor: pointer;
-  &:hover{
+  &:hover {
     transition: all 0.3s ease;
     border-bottom: 4px solid $light-green;
-    
   }
 }
 .card {
   width: 80%;
-  min-height: 300px;
+  min-height: 400px;
   height: 100%;
   border-radius: 12px;
   background-color: rgb(241, 247, 243);
@@ -78,11 +77,11 @@
     width: 260px;
   }
 }
-.startDate{
+.startDate {
   display: flex;
   justify-content: center;
   align-items: center;
-  .date{
+  .date {
     margin-left: 10px;
   }
 }
@@ -103,7 +102,20 @@
   display: flex;
   justify-content: space-between;
 }
+.timeContainer {
+  display: flex;
+  justify-content: space-between;
+  .imgWrapper {
+    width: 40px;
+    margin: 0 auto;
+  }
 
+  .startTime,
+  .finishTime {
+    display: flex;
+    flex-direction: column;
+  }
+}
 .close {
   position: absolute;
   right: 15px;
@@ -133,8 +145,10 @@
   font-size: 24px;
 }
 .item_text {
+  max-width: 360px;
   text-align: center;
   font-size: 18px;
+  margin-bottom: 20px;
 }
 .card {
   position: relative;

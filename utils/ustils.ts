@@ -2,9 +2,12 @@ export const convertDateFunc = (date: any) => {
   let newDate = Date.parse(date);
   let d = new Date(newDate);
   let yaer = d.getFullYear();
-  let month = d.getMonth() + 1;
+  let monthFirst = (d.getMonth() + 1).toString();
+  if (parseInt(monthFirst) < 9) {
+    monthFirst = '0' + monthFirst;
+  }
   let day = d.getDate();
-  let stringCorrectDate = `${day}.0${month}.${yaer}`;
+  let stringCorrectDate = `${day}.${monthFirst}.${yaer}`;
   return stringCorrectDate;
 };
 
