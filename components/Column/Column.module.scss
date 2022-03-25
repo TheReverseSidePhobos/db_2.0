@@ -47,36 +47,11 @@
     transition: all 0.3s ease;
     border-bottom: 4px solid $light-green;
   }
-}
-.card {
-  width: 80%;
-  min-height: 400px;
-  height: 100%;
-  border-radius: 12px;
-  background-color: rgb(241, 247, 243);
-  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-  margin: 20px auto;
-  padding: 10px;
-  cursor: pointer;
-  @media (max-width: '1200px') {
-    width: 240px;
-  }
   @media (max-width: '1120px') {
-    width: 300px;
-  }
-  @media (max-width: '968px') {
-    width: 240px;
-  }
-  @media (max-width: '847px') {
-    width: 400px;
-  }
-  @media (max-width: '460px') {
-    width: 300px;
-  }
-  @media (max-width: '360px') {
-    width: 260px;
+    width: 100%;
   }
 }
+
 .startDate {
   display: flex;
   justify-content: center;
@@ -87,7 +62,7 @@
 }
 .card__btn {
   border: none;
-  background-color: rgba(10, 90, 37, 0.158);
+  background-color: rgba(199, 63, 22, 0.158);
   padding: 8px 18px;
   border-radius: 5px;
   font-size: 26px;
@@ -97,11 +72,7 @@
     cursor: pointer;
   }
 }
-.buttons {
-  margin: 10px 0;
-  display: flex;
-  justify-content: space-between;
-}
+
 .timeContainer {
   display: flex;
   justify-content: space-between;
@@ -116,17 +87,7 @@
     flex-direction: column;
   }
 }
-.close {
-  position: absolute;
-  right: 15px;
-  top: 15px;
-  cursor: pointer;
-  transition: all 0.2s linear;
-  &:hover {
-    color: rgb(175, 8, 8);
-    transform: rotate(90deg);
-  }
-}
+
 .date {
   text-align: center;
   font-size: 18px;
@@ -140,35 +101,16 @@
 .blue {
   color: blue;
 }
-.item_title {
-  text-align: center;
-  font-size: 24px;
-}
-.item_text {
-  max-width: 360px;
-  text-align: center;
-  font-size: 18px;
-  margin-bottom: 20px;
-}
-.card {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+
+
+
+
+
+
+
+
 .item__priority {
   font-size: 18px;
   font-weight: 600;
 }
-.detailed {
-  margin: 10px 0;
-  padding: 10px 0;
-  cursor: pointer;
-  font-size: 26px;
-  text-align: center;
-  background-color: rgba(10, 90, 37, 0.158);
-  &:hover {
-    background-color: rgba(10, 90, 37, 0.274);
-    color: $main;
-  }
-}
+

@@ -51,7 +51,6 @@ const Home: NextPage = () => {
   }, []);
 
   const handleSorting = (option: any, position: any) => {
-    debugger;
     if (position == 'New Tasks') {
       let sorted;
       switch (option) {
