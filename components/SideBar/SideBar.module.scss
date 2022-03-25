@@ -3,11 +3,24 @@
 .sidebar {
   padding: 0 10px;
   max-width: 1440px;
-  margin: 0 auto;
+
   .btnWrapper {
-    margin: 36px 0;
+    margin: 25px 0;
   }
   .dp {
     margin-top: 22px;
+    justify-content: flex-start;
+  }
+  @media (max-width: '847px') {
+    display: flex;
+    .btnsWrapper {
+      margin-left: 30px;
+    }
+  }
+  @media (max-width: '565px') {
+    display: block;
+    .btnsWrapper {
+      margin-left: 0;
+    }
   }
 }

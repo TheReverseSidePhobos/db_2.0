@@ -1,10 +1,13 @@
 import React from 'react';
+import Layout from '../components/Layout';
 
 const aboutUs: React.FC = () => {
   return (
-    <div className="container">
-      <h1>aboutUs</h1>
-    </div>
+    <Layout>
+      <div className="aboutUs container">
+        <h1>aboutUs</h1>
+      </div>
+    </Layout>
   );
 };
 

@@ -47,24 +47,26 @@ const SideBar: React.FC = () => {
           />
 
         </div>
-        <div className={style.btnWrapper}>
-          <Button
-            size="lg"
-            type={'accept'}
-            text="Make New Task"
-            onClick={handleMakeTask}
-          />
-        </div>
-        {tasks && tasks.length > 0 && (
+        <div className={style.btnsWrapper}>
           <div className={style.btnWrapper}>
             <Button
-              size={'lg'}
-              type={'primary'}
-              text="Save tasks for this user"
-              onClick={() => handleSaveToCookie(tasks)}
+              size="lg"
+              type={'accept'}
+              text="Make New Task"
+              onClick={handleMakeTask}
             />
           </div>
-        )}
+          {tasks && tasks.length > 0 && (
+            <div className={style.btnWrapper}>
+              <Button
+                size={'lg'}
+                type={'primary'}
+                text="Save tasks for this user"
+                onClick={() => handleSaveToCookie(tasks)}
+              />
+            </div>
+          )}
+        </div>
       </div>
     </>
   );
