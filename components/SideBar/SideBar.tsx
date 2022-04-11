@@ -17,8 +17,9 @@ const SideBar: React.FC = () => {
   const sideBarStyle = cn(style.sidebar);
   const dispatch = useDispatch();
   
-  const { dateWasMade, tasks } = useTypedSelector((state) => state.task);
+  const { dateWasMade, newTasks, inProgressTasks, doneTasks } = useTypedSelector((state) => state.task);
 
+  let allTasks = [...newTasks, ...inProgressTasks, ...doneTasks];
   const handleMakeTask = () => {
     dispatch(toggleModal(true));
   };
@@ -56,13 +57,14 @@ const SideBar: React.FC = () => {
               onClick={handleMakeTask}
             />
           </div>
-          {tasks && tasks.length > 0 && (
+          {/* {allTasks && allTasks.length > 0 && ( */}
+          {true && (
             <div className={style.btnWrapper}>
               <Button
                 size={'lg'}
                 type={'primary'}
                 text="Save tasks for this user"
-                onClick={() => handleSaveToCookie(tasks)}
+                onClick={() => handleSaveToCookie(allTasks)}
               />
             </div>
           )}

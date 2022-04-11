@@ -3,7 +3,9 @@ export interface taskState {
   infoModalShow?: boolean;
   infoObj?: IinfoObj | null;
   modalShow?: boolean;
-  tasks: any[];
+  newTasks: any[],
+  inProgressTasks: any[],
+  doneTasks: any[],
   loading: boolean;
   error: null | string;
   id?: number;
@@ -24,11 +26,16 @@ export enum TaskActionTypes {
   SAVE_TASK = 'SAVE_TASK',
   SAVE_DATE_WAS_MADE = 'SAVE_DATE_WAS_MADE',
   SAVE_DATE_FINIHED = 'SAVE_DATE_FINIHED',
-  UPDATE_TASKS = 'UPDATE_TASKS',
+  UPDATE_NEW_TASKS = 'UPDATE_NEW_TASKS',
+  UPDATE_PROGRESS_TASKS = 'UPDATE_PROGRESS_TASKS',
+  UPDATE_DONE_TASKS = 'UPDATE_DONE_TASKS',
   SAVE_OBJECT_FOR_INFO = 'SAVE_OBJECT_FOR_INFO',
   ALERT_SHOW = 'ALERT_SHOW',
-  SAVE_TASKS_REDUX_TO_REDUX = 'SAVE_TASKS_REDUX_TO_REDUX',
+  SAVE_TASKS_REDUX_FROM_DB = 'SAVE_TASKS_REDUX_FROM_DB',
   SAVE_TASK_REDUX = 'SAVE_TASK_REDUX',
+  SAVE_NEW_TASKS_REDUX_FROM_DB = 'SAVE_NEW_TASKS_REDUX_FROM_DB',
+  SAVE_PROGRESS_TASKS_REDUX_FROM_DB = 'SAVE_PROGRESS_TASKS_REDUX_FROM_DB',
+  SAVE_DONE_TASKS_REDUX_FROM_DB = 'SAVE_DONE_TASKS_REDUX_FROM_DB',
 }
 interface IinfoObj {
   id?: number;
@@ -45,8 +52,16 @@ interface saveTaskRedux {
   type: TaskActionTypes.SAVE_TASK_REDUX;
   payload: any
 }
-interface saveTasksToRedux {
-  type: TaskActionTypes.SAVE_TASKS_REDUX_TO_REDUX;
+interface saveNewTasksToReduxFromDb {
+  type: TaskActionTypes.SAVE_NEW_TASKS_REDUX_FROM_DB;
+  payload: any
+}
+interface saveProgressTasksToReduxFromDb {
+  type: TaskActionTypes.SAVE_PROGRESS_TASKS_REDUX_FROM_DB;
+  payload: any
+}
+interface saveDoneTasksToReduxFromDb {
+  type: TaskActionTypes.SAVE_DONE_TASKS_REDUX_FROM_DB;
   payload: any
 }
 interface FetchTaskSuccessAction {
@@ -81,8 +96,16 @@ interface saveDateFinished {
   type: TaskActionTypes.SAVE_DATE_FINIHED;
   payload: Date;
 }
-interface updateTasks {
-  type: TaskActionTypes.UPDATE_TASKS;
+interface updateNewTasks {
+  type: TaskActionTypes.UPDATE_NEW_TASKS;
+  payload: [];
+}
+interface updateProgressTasks {
+  type: TaskActionTypes.UPDATE_PROGRESS_TASKS;
+  payload: [];
+}
+interface updateDoneTasks {
+  type: TaskActionTypes.UPDATE_DONE_TASKS;
   payload: [];
 }
 
@@ -104,9 +127,13 @@ export type TaskAction =
   | saveTask
   | saveDateWasMade
   | saveDateFinished
-  | updateTasks
+  | updateNewTasks
+  | updateProgressTasks
+  | updateDoneTasks
   | saveObjectForInfo
   | toggleInfoModal
   | alertShow
   | saveTaskRedux
-  | saveTasksToRedux;
+  | saveNewTasksToReduxFromDb
+  | saveProgressTasksToReduxFromDb
+  | saveDoneTasksToReduxFromDb;

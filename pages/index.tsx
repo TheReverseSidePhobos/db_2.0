@@ -15,13 +15,14 @@ import { compare } from '../utils/ustils';
 import Cookies from 'js-cookie';
 
 const Home: NextPage = () => {
-  const { modalShow, tasks, infoModalShow, alertShow } = useTypedSelector(
+  const { modalShow, newTasks, inProgressTasks, doneTasks, infoModalShow, alertShow } = useTypedSelector(
     (state) => state.task
   );
+  let tasks = [...newTasks, ...inProgressTasks, ...doneTasks];
 
-  let new_tasks = tasks.filter((task) => task.position == 'new');
-  let progress_tasks = tasks.filter((task) => task.position == 'progress');
-  let done_tasks = tasks.filter((task) => task.position == 'done');
+  // let new_tasks = tasks.filter((task) => task.position == 'new');
+  // let progress_tasks = tasks.filter((task) => task.position == 'progress');
+  // let done_tasks = tasks.filter((task) => task.position == 'done');
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -51,26 +52,26 @@ const Home: NextPage = () => {
   }, []);
 
   const handleSorting = (option: any, position: any) => {
-    if (position == 'New Tasks') {
+    if (position === 'New Tasks') {
       let sorted;
       switch (option) {
         case 'By Priority ASC':
-          sorted = new_tasks.sort((a, b) =>
+          sorted = newTasks.sort((a, b) =>
             a.priorityNum < b.priorityNum ? 1 : -1
           );
           break;
         case 'By Priority DESC':
-          sorted = new_tasks.sort((a, b) =>
+          sorted = newTasks.sort((a, b) =>
             a.priorityNum > b.priorityNum ? 1 : -1
           );
           break;
         case 'By Date ASC':
-          sorted = new_tasks.sort((a, b) =>
+          sorted = newTasks.sort((a, b) =>
             a.dateWasMade < b.dateWasMade ? 1 : -1
           );
           break;
         case 'By Date DESC':
-          sorted = new_tasks.sort((a, b) =>
+          sorted = newTasks.sort((a, b) =>
             a.dateWasMade > b.dateWasMade ? 1 : -1
           );
           break;
@@ -98,17 +99,17 @@ const Home: NextPage = () => {
         <div className="columns">
           <Column
             position="new"
-            inner_tasks={new_tasks}
+            inner_tasks={newTasks}
             handleSorting={handleSorting}
           />
           <Column
             position="progress"
-            inner_tasks={progress_tasks}
-            handleSorting
+            inner_tasks={inProgressTasks}
+            handleSorting={handleSorting}
           />
           <Column
             position="done"
-            inner_tasks={done_tasks}
+            inner_tasks={doneTasks}
             handleSorting={handleSorting}
           />
         </div>

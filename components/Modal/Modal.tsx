@@ -24,9 +24,10 @@ import { convertDateFunc } from '../../utils/ustils';
 
 const Modal = () => {
   const dispatch = useDispatch();
+  const { dateFinish, dateWasMade, newTasks, inProgressTasks, doneTasks, infoModalShow, infoObj } =
+  useTypedSelector((state) => state.task);
 
-  const { dateFinish, dateWasMade, tasks, infoModalShow, infoObj } =
-    useTypedSelector((state) => state.task);
+  let allTasks = [...newTasks, ...inProgressTasks, ...doneTasks];
 
   const handleCloseModal = () => {
     dispatch(toggleInfoModal(false));
@@ -131,7 +132,7 @@ const Modal = () => {
                     : 5;
 
                 let task = {
-                  id: tasks.length,
+                  id: allTasks.length,
                   name,
                   description,
                   priorityNum,

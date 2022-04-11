@@ -32,8 +32,8 @@ const Column = ({ position, inner_tasks, handleSorting }) => {
     Cookies.set('tasks', tasksJs);
   };
 
-  const { tasks } = useSelector((state) => state.task);
-
+  const { newTasks, inProgressTasks, doneTasks } = useSelector((state) => state.task);
+  let allTasks = [...newTasks, ...inProgressTasks, ...doneTasks]
   const changePosition = (id, position, tasks) => {
     tasks.map((item) => {
       if (item.id == id) {
@@ -43,20 +43,22 @@ const Column = ({ position, inner_tasks, handleSorting }) => {
     dispatch(updateTasks(tasks));
   };
 
-  const handleNextBtn = (item) => {
-    if (item.position == 'new') {
-      changePosition(item.id, 'progress', tasks);
-    } else if (item.position == 'progress') {
-      changePosition(item.id, 'done', tasks);
-    }
-  };
-  const handlePrevBtn = (item) => {
-    if (item.position == 'done') {
-      changePosition(item.id, 'progress', tasks);
-    } else if (item.position == 'progress') {
-      changePosition(item.id, 'new', tasks);
-    }
-  };
+  // const handleNextBtn = (item) => {
+  //   debugger
+  //   if (item.position == 'new') {
+  //     changePosition(item.id, 'progress', tasks);
+  //   } else if (item.position == 'progress') {
+  //     changePosition(item.id, 'done', tasks);
+  //   }
+  // };
+  // const handlePrevBtn = (item) => {
+  //   debugger
+  //   if (item.position == 'done') {
+  //     changePosition(item.id, 'progress', tasks);
+  //   } else if (item.position == 'progress') {
+  //     changePosition(item.id, 'new', tasks);
+  //   }
+  // };
 
   const handleInfoModalShow = (item) => {
     dispatch(saveObjForInfo(item));
@@ -69,12 +71,11 @@ const Column = ({ position, inner_tasks, handleSorting }) => {
 
   const drapHandle = (e, position) => {
     let i = JSON.parse(localStorage.getItem('item'));
-    changePosition(i.id, position, tasks);
+    changePosition(i.id, position, allTasks);
   };
   let sorted;
 
   const hangleChange = (sortingType, position_name) => {
-    debugger;
     let copiedArr = inner_tasks;
     inner_tasks.filter((item) => item.position == position_name);
     sorted = inner_tasks.sort((a, b) =>
@@ -122,7 +123,7 @@ const Column = ({ position, inner_tasks, handleSorting }) => {
                   dragStartHandle={dragStartHandle}
                   changePosition={changePosition}
                   position={position}
-                  tasks={tasks}
+                  tasks={allTasks}
                 />
                 // <div
                 //   className={style.card}

@@ -71,24 +71,95 @@ export const saveTask = (task: Date) => {
     payload: task
   };
 };
-export const updateTasks = (tasks: any) => {
+export const updNewTasks = (tasks: any) => {
   return {
-    type: TaskActionTypes.UPDATE_TASKS,
+    type: TaskActionTypes.UPDATE_NEW_TASKS,
     payload: tasks
   };
 };
-export const add_to_redux_from_db = (task: any) => {
+export const updProgressTasks = (tasks: any) => {
   return {
-    type: TaskActionTypes.SAVE_TASKS_REDUX_TO_REDUX,
-    payload: task
+    type: TaskActionTypes.UPDATE_PROGRESS_TASKS,
+    payload: tasks
   };
 };
+export const updDoneTasks = (tasks: any) => {
+  return {
+    type: TaskActionTypes.UPDATE_DONE_TASKS,
+    payload: tasks
+  };
+};
+
+// export const fetchTasks = () => {
+//   return async (dispatch: Dispatch<TaskAction>) => {
+//     try {
+//       dispatch({ type: TaskActionTypes.FETCH_TASKS });
+//       const response = await axios.get(` `);
+//     } catch (e) {
+//       console.log(e);
+//     }
+//   };
+// };
+
+export const updateTasks = (tasks: any) =>{
+  let news = tasks.filter((task: any) => task.position == 'new');
+  let progress = tasks.filter((task: any) => task.position == 'progress');
+  let dones = tasks.filter((task: any) => task.position == 'done');
+
+  return async (dispatch: Dispatch) => {
+    try {
+        dispatch({type: TaskActionTypes.UPDATE_NEW_TASKS, payload: news})
+        dispatch({type: TaskActionTypes.UPDATE_PROGRESS_TASKS, payload: progress})
+        dispatch({type: TaskActionTypes.UPDATE_DONE_TASKS, payload: dones})
+      
+    } catch (error) {
+      console.log(error)
+    }
+  } 
+}
+
+// export const add_to_redux_from_db = (task: any) => {
+//   debugger
+//   return {
+//     type: TaskActionTypes.SAVE_TASKS_REDUX_FROM_DB,
+//     payload: task
+//   };
+// };
+
+export const add_to_redux_from_db = (task: any) =>{
+    //если это одна таска
+    if (task.position === 'new') {
+      return {
+        type: TaskActionTypes.SAVE_NEW_TASKS_REDUX_FROM_DB,
+        payload: task
+      };
+    }else if (task.position === 'progress'){
+      return {
+        type: TaskActionTypes.SAVE_PROGRESS_TASKS_REDUX_FROM_DB,
+        payload: task
+      };
+    }else{//done
+      return {
+        type: TaskActionTypes.SAVE_DONE_TASKS_REDUX_FROM_DB,
+        payload: task
+      };
+    }
+    // let new_tasks = tasks.filter((task) => task.position == 'new');
+    // let progress_tasks = tasks.filter((task) => task.position == 'progress');
+    // let done_tasks = tasks.filter((task) => task.position == 'done');
+}
+
+
+
+
+
 export const add_task_to_redux = (task: any) => {
   return {
     type: TaskActionTypes.SAVE_TASK_REDUX,
     payload: task
   };
 };
+
 
 export const saveObjForInfo = (infoObj: {}) => {
   return {

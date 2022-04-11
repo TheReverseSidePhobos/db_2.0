@@ -5,7 +5,9 @@ const initialState: taskState = {
   modalShow: false,
   infoModalShow: false,
   infoObj: null,
-  tasks: [],
+  newTasks: [],
+  inProgressTasks: [],
+  doneTasks: [],
   loading: false,
   error: '',
   name: '',
@@ -20,24 +22,24 @@ export const taskReducer = (
   action: TaskAction
 ): taskState => {
   switch (action.type) {
-    case TaskActionTypes.FETCH_TASKS:
-      return {
-        loading: true,
-        tasks: [],
-        error: null
-      };
-    case TaskActionTypes.FETCH_TASKS_SUCCESS:
-      return {
-        loading: false,
-        tasks: action.payload,
-        error: null
-      };
-    case TaskActionTypes.FETCH_TASKS_ERROR:
-      return {
-        loading: false,
-        error: action.payload,
-        tasks: []
-      };
+    // case TaskActionTypes.FETCH_TASKS:
+    //   return {
+    //     loading: true,
+    //     tasks: [],
+    //     error: null
+    //   };
+    // case TaskActionTypes.FETCH_TASKS_SUCCESS:
+    //   return {
+    //     loading: false,
+    //     tasks: action.payload,
+    //     error: null
+    //   };
+    // case TaskActionTypes.FETCH_TASKS_ERROR:
+    //   return {
+    //     loading: false,
+    //     error: action.payload,
+    //     tasks: []
+    //   };
     case TaskActionTypes.TOGGLE_MODAL:
       return {
         ...state,
@@ -58,10 +60,20 @@ export const taskReducer = (
         ...state,
         dateFinish: action.payload
       };
-    case TaskActionTypes.UPDATE_TASKS:
+    case TaskActionTypes.UPDATE_NEW_TASKS:
       return {
         ...state,
-        tasks: action.payload
+        newTasks: action.payload
+      };
+    case TaskActionTypes.UPDATE_PROGRESS_TASKS:
+      return {
+        ...state,
+        inProgressTasks: action.payload
+      };
+    case TaskActionTypes.UPDATE_DONE_TASKS:
+      return {
+        ...state,
+        doneTasks: action.payload
       };
     case TaskActionTypes.SAVE_OBJECT_FOR_INFO:
       return {
@@ -76,12 +88,22 @@ export const taskReducer = (
     case TaskActionTypes.SAVE_TASK_REDUX:
       return {
         ...state,
-        tasks: [...state.tasks, action.payload]
+        newTasks: [...state.newTasks, action.payload]
       };
-    case TaskActionTypes.SAVE_TASKS_REDUX_TO_REDUX:
+    case TaskActionTypes.SAVE_NEW_TASKS_REDUX_FROM_DB:
       return {
         ...state,
-        tasks: [...state.tasks, action.payload]
+        newTasks: [...state.newTasks, action.payload]
+      };
+    case TaskActionTypes.SAVE_PROGRESS_TASKS_REDUX_FROM_DB:
+      return {
+        ...state,
+        inProgressTasks: [...state.inProgressTasks, action.payload]
+      };
+    case TaskActionTypes.SAVE_DONE_TASKS_REDUX_FROM_DB:
+      return {
+        ...state,
+        doneTasks: [...state.doneTasks, action.payload]
       };
 
     default:
