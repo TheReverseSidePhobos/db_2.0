@@ -80,96 +80,54 @@ const Home: NextPage = () => {
 
   // }
 
+
+  const mySortingSwitch = (option: string, tasks: any) => {
+    let sorted;
+    switch (option) {
+      case 'By Priority ASC':
+        sorted = tasks.sort((a: any, b: any) =>
+          a.priorityNum < b.priorityNum ? 1 : -1
+        );
+        break;
+      case 'By Priority DESC':
+        sorted = tasks.sort((a: any, b: any) =>
+          a.priorityNum > b.priorityNum ? 1 : -1
+        );
+        break;
+      case 'By Date ASC':
+        sorted = tasks.sort((a: any, b: any) =>
+          a.dateWasMade < b.dateWasMade ? 1 : -1
+        );
+        break;
+      case 'By Date DESC':
+        sorted = tasks.sort((a: any, b: any) =>
+          a.dateWasMade > b.dateWasMade ? 1 : -1
+        );
+        break;
+      default:
+        break;
+    }
+    return sorted
+  }
+
+
   const handleSorting = (option: any, position: any) => {
     if (position === 'New Tasks') {
-      let sorted;
-      switch (option) {
-        case 'By Priority ASC':
-          sorted = newTasks.sort((a, b) =>
-            a.priorityNum < b.priorityNum ? 1 : -1
-          );
-          break;
-        case 'By Priority DESC':
-          sorted = newTasks.sort((a, b) =>
-            a.priorityNum > b.priorityNum ? 1 : -1
-          );
-          break;
-        case 'By Date ASC':
-          sorted = newTasks.sort((a, b) =>
-            a.dateWasMade < b.dateWasMade ? 1 : -1
-          );
-          break;
-        case 'By Date DESC':
-          sorted = newTasks.sort((a, b) =>
-            a.dateWasMade > b.dateWasMade ? 1 : -1
-          );
-          break;
-        default:
-          break;
-      }
+      let sorted = mySortingSwitch(option, newTasks)
+
       dispatch(updateTasks(sorted, position));
       let sortedTasks = JSON.stringify(sorted);
       Cookies.set('newTasks', sortedTasks);
     }
 
     if (position === 'In Progress') {
-      let sorted;
-      switch (option) {
-        case 'By Priority ASC':
-          sorted = inProgressTasks.sort((a, b) =>
-            a.priorityNum < b.priorityNum ? 1 : -1
-          );
-          break;
-        case 'By Priority DESC':
-          sorted = inProgressTasks.sort((a, b) =>
-            a.priorityNum > b.priorityNum ? 1 : -1
-          );
-          break;
-        case 'By Date ASC':
-          sorted = inProgressTasks.sort((a, b) =>
-            a.dateWasMade < b.dateWasMade ? 1 : -1
-          );
-          break;
-        case 'By Date DESC':
-          sorted = inProgressTasks.sort((a, b) =>
-            a.dateWasMade > b.dateWasMade ? 1 : -1
-          );
-          break;
-
-        default:
-          break;
-      }
+      let sorted = mySortingSwitch(option, inProgressTasks)
       dispatch(updateTasks(sorted, position));
       let sortedTasks = JSON.stringify(sorted);
       Cookies.set('inProgressTasks', sortedTasks);
     }
     if (position === 'Done') {
-      let sorted;
-      switch (option) {
-        case 'By Priority ASC':
-          sorted = doneTasks.sort((a, b) =>
-            a.priorityNum < b.priorityNum ? 1 : -1
-          );
-          break;
-        case 'By Priority DESC':
-          sorted = doneTasks.sort((a, b) =>
-            a.priorityNum > b.priorityNum ? 1 : -1
-          );
-          break;
-        case 'By Date ASC':
-          sorted = doneTasks.sort((a, b) =>
-            a.dateWasMade < b.dateWasMade ? 1 : -1
-          );
-          break;
-        case 'By Date DESC':
-          sorted = doneTasks.sort((a, b) =>
-            a.dateWasMade > b.dateWasMade ? 1 : -1
-          );
-          break;
-
-        default:
-          break;
-      }
+      let sorted = mySortingSwitch(option, doneTasks)
       dispatch(updateTasks(sorted, position));
       let sortedTasks = JSON.stringify(sorted);
       Cookies.set('doneTasks', sortedTasks);
