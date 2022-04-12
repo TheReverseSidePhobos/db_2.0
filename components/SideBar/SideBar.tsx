@@ -13,11 +13,42 @@ import {
 } from '../../store/actions/actions';
 import Cookie from 'js-cookie';
 
+import Geocode from "react-geocode";
+
 const SideBar: React.FC = () => {
+
+  Geocode.setApiKey("AIzaSyB-vuCZNgUKiz_y_ki9QEHN9tMQU-b9_3A");
+  Geocode.setLanguage("en");
+  Geocode.setRegion("ru");
+
+
+  Geocode.fromLatLng("48.8583701", "2.2922926").then(
+    (response) => {
+      const address = response.results[0].formatted_address;
+      console.log('address: ', address);
+    },
+    (error) => {
+      console.error(error);
+    }
+  );
+  // 56.3287, 44.002
+    var method = 'GET';
+    var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng='+56.32+','+44.00+'&sensor=true';
+    var async = true;
+
+
+
+
+
+
+
+
+
   const sideBarStyle = cn(style.sidebar);
   const dispatch = useDispatch();
-  
-  const { dateWasMade, newTasks, inProgressTasks, doneTasks } = useTypedSelector((state) => state.task);
+
+  const { dateWasMade, newTasks, inProgressTasks, doneTasks } =
+    useTypedSelector((state) => state.task);
 
   let allTasks = [...newTasks, ...inProgressTasks, ...doneTasks];
   const handleMakeTask = () => {
@@ -25,14 +56,21 @@ const SideBar: React.FC = () => {
   };
   const handleSaveToCookie = (tasks: any[]) => {
     let tasksJs = JSON.stringify(tasks);
-    Cookie.set('tasks', tasksJs);
+
+    let news = tasks.filter((task: any) => task.position == 'new');
+    let progress = tasks.filter((task: any) => task.position == 'progress');
+    let dones = tasks.filter((task: any) => task.position == 'done');
+
+    Cookie.set('newTasks', JSON.stringify(news));
+    Cookie.set('inProgressTasks', JSON.stringify(progress));
+    Cookie.set('doneTasks', JSON.stringify(dones));
+
     dispatch(alertShow(true));
     setTimeout(() => {
       dispatch(alertShow(false));
     }, 3000);
-    // disable btn add class
   };
-  
+
   const setStart = (startDate: any) => {
     dispatch(setStartDate(startDate));
   };
@@ -46,7 +84,6 @@ const SideBar: React.FC = () => {
             inline
             onChange={(date) => setStart(date)}
           />
-
         </div>
         <div className={style.btnsWrapper}>
           <div className={style.btnWrapper}>
@@ -69,6 +106,7 @@ const SideBar: React.FC = () => {
             </div>
           )}
         </div>
+
       </div>
     </>
   );

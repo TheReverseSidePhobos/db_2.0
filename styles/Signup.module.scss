@@ -1,0 +1,55 @@
+@import './colors.scss';
+
+.isDanger {
+  color: rgb(187, 1, 1);
+}
+
+.signup {
+  text-align: center;
+  h1 {
+    margin-bottom: 30px;
+  }
+
+  .field {
+    margin: 20px 0;
+  }
+
+  input,
+  textarea {
+    resize: none;
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 17px;
+    margin: 10px 0;
+    border: 3px solid $main;
+    outline: none;
+    min-width: 30%;
+  }
+  .control {
+  }
+  button {
+    min-width: 25%;
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 17px;
+    margin: 10px 0;
+    border: 3px solid $main;
+    background-color: inherit;
+    outline: none;
+    &:hover {
+      background-color: $main;
+      color: #fff;
+      cursor: pointer;
+    }
+    &:active {
+      background-color: #fff;
+      color: $main;
+      cursor: pointer;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    display: block;
+    justify-content: center;
+  }
+}

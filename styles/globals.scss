@@ -47,4 +47,32 @@ a {
 .aboutUs {
   margin-top: 50px;
 }
+.abouttitle {
+  text-align: center;
+  margin: 20px 0;
+}
 //aboutUs
+
+//ErrorPage
+.errorPage {
+  display: flex;
+  justify-content: center;
+}
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.errorText {
+  display: flex;
+  h3 {
+    margin: 10px 10px 10px 0px;
+  }
+}
+.errorNote {
+  font-size: 12px;
+  color: green;
+  margin: 10px 0;
+}
+//ErrorPage

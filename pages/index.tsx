@@ -15,20 +15,49 @@ import { compare } from '../utils/ustils';
 import Cookies from 'js-cookie';
 
 const Home: NextPage = () => {
-  const { modalShow, newTasks, inProgressTasks, doneTasks, infoModalShow, alertShow } = useTypedSelector(
-    (state) => state.task
-  );
-  let tasks = [...newTasks, ...inProgressTasks, ...doneTasks];
+  const {
+    modalShow,
+    newTasks,
+    inProgressTasks,
+    doneTasks,
+    infoModalShow,
+    alertShow
+  } = useTypedSelector((state) => state.task);
 
-  // let new_tasks = tasks.filter((task) => task.position == 'new');
-  // let progress_tasks = tasks.filter((task) => task.position == 'progress');
-  // let done_tasks = tasks.filter((task) => task.position == 'done');
+  let tasks = [...newTasks, ...inProgressTasks, ...doneTasks];
 
   const dispatch = useDispatch();
   useEffect(() => {
-    let obj = Cookie.get('tasks');
-    if (obj) {
-      let jsonObj = JSON.parse(obj);
+    let objNew = Cookie.get('newTasks');
+    debugger;
+    if (objNew) {
+      let jsonObj = JSON.parse(objNew);
+
+      jsonObj.forEach((el: any) => {
+        let isInRedux = tasks.find((task) => task.id == el.id);
+        if (!isInRedux) {
+          dispatch(add_to_redux_from_db(el));
+        }
+      });
+    }
+
+    let objProgress = Cookie.get('inProgressTasks');
+    debugger;
+    if (objProgress) {
+      let jsonObj = JSON.parse(objProgress);
+
+      jsonObj.forEach((el: any) => {
+        let isInRedux = tasks.find((task) => task.id == el.id);
+        if (!isInRedux) {
+          dispatch(add_to_redux_from_db(el));
+        }
+      });
+    }
+
+    let objDone = Cookie.get('doneTasks');
+    debugger;
+    if (objDone) {
+      let jsonObj = JSON.parse(objDone);
 
       jsonObj.forEach((el: any) => {
         let isInRedux = tasks.find((task) => task.id == el.id);
@@ -39,28 +68,29 @@ const Home: NextPage = () => {
     }
   }, []);
 
-  const [equalArr, setEqualArr] = useState();
+  // const [equalArr, setEqualArr] = useState();
 
-  useEffect(() => {
-    let obj = Cookie.get('tasks');
-    if (obj) {
-      let jsonObj = JSON.parse(obj);
+  // useEffect(() => {
+  //   let obj = Cookie.get('tasks');
+  //   if (obj) {
+  //     let jsonObj = JSON.parse(obj);
 
-      let isEqual = setEqualArr(compare(tasks, jsonObj));
-      console.log('equalArr: ', isEqual);
-    }
-  }, []);
+  //     let isEqual = setEqualArr(compare(tasks, jsonObj));
+  //     console.log('equalArr: ', isEqual);
+  //   }
+  // }, []);
 
   const handleSorting = (option: any, position: any) => {
+    debugger;
     if (position === 'New Tasks') {
       let sorted;
       switch (option) {
-        case 'By Priority ASC':
+        case 'By Priority DESC':
           sorted = newTasks.sort((a, b) =>
             a.priorityNum < b.priorityNum ? 1 : -1
           );
           break;
-        case 'By Priority DESC':
+        case 'By Priority ASC':
           sorted = newTasks.sort((a, b) =>
             a.priorityNum > b.priorityNum ? 1 : -1
           );
@@ -79,12 +109,77 @@ const Home: NextPage = () => {
         default:
           break;
       }
-
-      dispatch(updateTasks(sorted));
+      debugger;
+      dispatch(updateTasks(sorted, position));
       let sortedTasks = JSON.stringify(sorted);
-      Cookies.set('tasks', sortedTasks);
+      Cookies.set('newTasks', sortedTasks);
+    }
+    if (position === 'In Progress') {
+      let sorted;
+      switch (option) {
+        case 'By Priority DESC':
+          sorted = inProgressTasks.sort((a, b) =>
+            a.priorityNum < b.priorityNum ? 1 : -1
+          );
+          break;
+        case 'By Priority ASC':
+          sorted = inProgressTasks.sort((a, b) =>
+            a.priorityNum > b.priorityNum ? 1 : -1
+          );
+          break;
+        case 'By Date ASC':
+          sorted = inProgressTasks.sort((a, b) =>
+            a.dateWasMade < b.dateWasMade ? 1 : -1
+          );
+          break;
+        case 'By Date DESC':
+          sorted = inProgressTasks.sort((a, b) =>
+            a.dateWasMade > b.dateWasMade ? 1 : -1
+          );
+          break;
+
+        default:
+          break;
+      }
+      debugger;
+      dispatch(updateTasks(sorted, position));
+      let sortedTasks = JSON.stringify(sorted);
+      Cookies.set('inProgressTasks', sortedTasks);
+    }
+    if (position === 'Done') {
+      let sorted;
+      switch (option) {
+        case 'By Priority DESC':
+          sorted = doneTasks.sort((a, b) =>
+            a.priorityNum < b.priorityNum ? 1 : -1
+          );
+          break;
+        case 'By Priority ASC':
+          sorted = doneTasks.sort((a, b) =>
+            a.priorityNum > b.priorityNum ? 1 : -1
+          );
+          break;
+        case 'By Date ASC':
+          sorted = doneTasks.sort((a, b) =>
+            a.dateWasMade < b.dateWasMade ? 1 : -1
+          );
+          break;
+        case 'By Date DESC':
+          sorted = doneTasks.sort((a, b) =>
+            a.dateWasMade > b.dateWasMade ? 1 : -1
+          );
+          break;
+
+        default:
+          break;
+      }
+      debugger;
+      dispatch(updateTasks(sorted, position));
+      let sortedTasks = JSON.stringify(sorted);
+      Cookies.set('doneTasks', sortedTasks);
     }
   };
+
   return (
     <Layout>
       <Head>
@@ -96,6 +191,7 @@ const Home: NextPage = () => {
         <div className={style.sidebar}>
           <SideBar />
         </div>
+
         <div className="columns">
           <Column
             position="new"
