@@ -30,7 +30,6 @@ const Signup = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values) => {
-    debugger;
     console.log(JSON.stringify(values, null, 2));
     dispatch(registration(values.email, values.password));
     router.push('/');

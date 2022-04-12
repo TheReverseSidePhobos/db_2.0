@@ -102,8 +102,6 @@ export const updDoneTasks = (tasks: any) => {
 // };
 
 export const updateTasks = (tasks: any, position?: any) => {
-  debugger;
-
   if (!!position) {
     return async (dispatch: Dispatch) => {
       try {

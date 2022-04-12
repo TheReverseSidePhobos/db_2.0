@@ -17,14 +17,14 @@
     min-height: 300px;
   }
   .selectContainer {
-    max-width: 100px;
+    max-width: 300px;
     margin: 20px auto;
     .select {
       padding: 1px;
       border: none;
       outline: none;
       border-radius: 12px;
-      font-size: 14px;
+      font-size: 12px;
       width: 100%;
       text-align-last: center;
       cursor: pointer;
@@ -45,6 +45,9 @@
   &:hover {
     transition: all 0.3s ease;
     border-bottom: 4px solid $light-green;
+  }
+  @media (max-width: '1400px') {
+    font-size: 20px;
   }
   @media (max-width: '1280px') {
     width: 100%;
@@ -105,15 +108,7 @@
   color: blue;
 }
 
-
-
-
-
-
-
-
 .item__priority {
   font-size: 18px;
   font-weight: 600;
 }
-

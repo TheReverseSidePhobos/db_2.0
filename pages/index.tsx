@@ -29,7 +29,6 @@ const Home: NextPage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     let objNew = Cookie.get('newTasks');
-    debugger;
     if (objNew) {
       let jsonObj = JSON.parse(objNew);
 
@@ -42,7 +41,6 @@ const Home: NextPage = () => {
     }
 
     let objProgress = Cookie.get('inProgressTasks');
-    debugger;
     if (objProgress) {
       let jsonObj = JSON.parse(objProgress);
 
@@ -55,7 +53,6 @@ const Home: NextPage = () => {
     }
 
     let objDone = Cookie.get('doneTasks');
-    debugger;
     if (objDone) {
       let jsonObj = JSON.parse(objDone);
 
@@ -79,18 +76,20 @@ const Home: NextPage = () => {
   //     console.log('equalArr: ', isEqual);
   //   }
   // }, []);
+  // const mySortInSwitch = () => {
+
+  // }
 
   const handleSorting = (option: any, position: any) => {
-    debugger;
     if (position === 'New Tasks') {
       let sorted;
       switch (option) {
-        case 'By Priority DESC':
+        case 'By Priority ASC':
           sorted = newTasks.sort((a, b) =>
             a.priorityNum < b.priorityNum ? 1 : -1
           );
           break;
-        case 'By Priority ASC':
+        case 'By Priority DESC':
           sorted = newTasks.sort((a, b) =>
             a.priorityNum > b.priorityNum ? 1 : -1
           );
@@ -105,24 +104,23 @@ const Home: NextPage = () => {
             a.dateWasMade > b.dateWasMade ? 1 : -1
           );
           break;
-
         default:
           break;
       }
-      debugger;
       dispatch(updateTasks(sorted, position));
       let sortedTasks = JSON.stringify(sorted);
       Cookies.set('newTasks', sortedTasks);
     }
+
     if (position === 'In Progress') {
       let sorted;
       switch (option) {
-        case 'By Priority DESC':
+        case 'By Priority ASC':
           sorted = inProgressTasks.sort((a, b) =>
             a.priorityNum < b.priorityNum ? 1 : -1
           );
           break;
-        case 'By Priority ASC':
+        case 'By Priority DESC':
           sorted = inProgressTasks.sort((a, b) =>
             a.priorityNum > b.priorityNum ? 1 : -1
           );
@@ -141,7 +139,6 @@ const Home: NextPage = () => {
         default:
           break;
       }
-      debugger;
       dispatch(updateTasks(sorted, position));
       let sortedTasks = JSON.stringify(sorted);
       Cookies.set('inProgressTasks', sortedTasks);
@@ -149,12 +146,12 @@ const Home: NextPage = () => {
     if (position === 'Done') {
       let sorted;
       switch (option) {
-        case 'By Priority DESC':
+        case 'By Priority ASC':
           sorted = doneTasks.sort((a, b) =>
             a.priorityNum < b.priorityNum ? 1 : -1
           );
           break;
-        case 'By Priority ASC':
+        case 'By Priority DESC':
           sorted = doneTasks.sort((a, b) =>
             a.priorityNum > b.priorityNum ? 1 : -1
           );
@@ -173,7 +170,6 @@ const Home: NextPage = () => {
         default:
           break;
       }
-      debugger;
       dispatch(updateTasks(sorted, position));
       let sortedTasks = JSON.stringify(sorted);
       Cookies.set('doneTasks', sortedTasks);
