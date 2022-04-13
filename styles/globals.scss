@@ -19,7 +19,7 @@ a {
   padding: 0 10px;
 }
 .page {
-  margin-top: 50px;
+  margin-top: -15px;
   position: relative;
   display: flex;
   padding: 0 10px;
@@ -76,3 +76,49 @@ a {
   margin: 10px 0;
 }
 //ErrorPage
+
+//Swiper
+
+.swiper {
+  cursor: grab;
+  margin-top: 44px;
+  // max-width: 1300px;
+  height: 100px;
+  .titleSwiper {
+    font-weight: 700;
+    line-height: 2;
+    text-align: center;
+  }
+  .swiperInfo {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+  }
+}
+.dataInfo {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+  min-width: 0;
+  .dataInfo__title {
+    font-weight: 600;
+  }
+}
+.swiper-wrapper {
+  padding: 4px;
+  // max-width: max-content;
+  // .swiper-slide {
+  //   margin: 0 20px;
+  // }
+}
+.mainContainerSwiper {
+  display: flex;
+  align-items: center;
+  max-width: 1300px;
+  margin: 0 auto;
+  .img {
+    margin-top: 50px;
+    max-width: 50px;
+  }
+}
+//Swiper

@@ -6,15 +6,29 @@ import SideBar from '../components/SideBar';
 import style from '../components/SideBar/SideBar.module.scss';
 import { useTypedSelector } from '../components/hooks/useTypedSelector';
 import Column from '../components/Column/Column';
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import Cookie from 'js-cookie';
 import { useDispatch } from 'react-redux';
 import { add_to_redux_from_db, updateTasks } from '../store/actions/actions';
 import Alert from '../components/Alert/Alert';
-import { compare } from '../utils/ustils';
 import Cookies from 'js-cookie';
+import { Autoplay } from 'swiper';
+import Swiper, { Navigation, Pagination } from 'swiper';
+import 'swiper/css';
 
-const Home: NextPage = () => {
+import Image from 'next/image';
+import { object } from 'yup';
+
+Swiper.use([Navigation, Pagination]);
+Swiper.use([Autoplay]);
+
+export async function getServerSideProps() {
+  const res = await fetch(`${process.env.API_HOST}/example`);
+  const data = await res.json();
+
+  return { props: { data } };
+}
+const Home: React.FC<any> = ({ data }) => {
   const {
     modalShow,
     newTasks,
@@ -80,7 +94,6 @@ const Home: NextPage = () => {
 
   // }
 
-
   const mySortingSwitch = (option: string, tasks: any) => {
     let sorted;
     switch (option) {
@@ -107,13 +120,12 @@ const Home: NextPage = () => {
       default:
         break;
     }
-    return sorted
-  }
-
+    return sorted;
+  };
 
   const handleSorting = (option: any, position: any) => {
     if (position === 'New Tasks') {
-      let sorted = mySortingSwitch(option, newTasks)
+      let sorted = mySortingSwitch(option, newTasks);
 
       dispatch(updateTasks(sorted, position));
       let sortedTasks = JSON.stringify(sorted);
@@ -121,18 +133,32 @@ const Home: NextPage = () => {
     }
 
     if (position === 'In Progress') {
-      let sorted = mySortingSwitch(option, inProgressTasks)
+      let sorted = mySortingSwitch(option, inProgressTasks);
       dispatch(updateTasks(sorted, position));
       let sortedTasks = JSON.stringify(sorted);
       Cookies.set('inProgressTasks', sortedTasks);
     }
     if (position === 'Done') {
-      let sorted = mySortingSwitch(option, doneTasks)
+      let sorted = mySortingSwitch(option, doneTasks);
       dispatch(updateTasks(sorted, position));
       let sortedTasks = JSON.stringify(sorted);
       Cookies.set('doneTasks', sortedTasks);
     }
   };
+
+  setTimeout(() => {
+    new Swiper('.swiper', {
+      loop: true,
+      speed: 3000,
+      slidesPerView: 1,
+      spaceBetween: 30,
+      autoplay: {
+        disableOnInteraction: true
+      },
+      effect: 'fade'
+    });
+
+  }, 500);
 
   return (
     <Layout>
@@ -141,6 +167,32 @@ const Home: NextPage = () => {
         <title>T.M.</title>
       </Head>
       {alertShow && <Alert />}
+
+      <div className="mainContainerSwiper">
+        <div>
+          <img className="img" src={'/clipboard.png'} />
+        </div>
+        <div className="swiper swiper__container">
+          <div className="titleSwiper">Try to use our app</div>
+          <div className="swiper-wrapper">
+            {data &&
+              data.map((item: any) => (
+                <div key={item.id} className="swiper-slide">
+                  <div className="swiperInfo">
+                    <div className="dataInfo">
+                      <div className='dataInfo__title'>{item.name}</div>
+                      <div className='dataInfo__description'>{item.description}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+          </div>
+          <div className="swiper-pagination"></div>
+          <div className="swiper-button-prev"></div>
+          <div className="swiper-button-next"></div>
+          <div className="swiper-scrollbar"></div>
+        </div>
+      </div>
       <main className="page container">
         <div className={style.sidebar}>
           <SideBar />
@@ -163,6 +215,7 @@ const Home: NextPage = () => {
             handleSorting={handleSorting}
           />
         </div>
+
         {modalShow && <Modal />}
         {infoModalShow && <Modal />}
       </main>
