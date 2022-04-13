@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import Image from 'next/image';
-import Button from '../components/Button/Button';
+import Button from '../components/Button';
 
 const ErrorPage = () => {
   const router = useRouter();

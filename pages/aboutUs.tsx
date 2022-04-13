@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
 
-import Swiper, { Navigation, Pagination } from 'swiper';
-import 'swiper/css';
 
 const aboutUs: React.FC = () => {
   const [latitude, setLatitude] = useState('');
@@ -27,9 +25,6 @@ const aboutUs: React.FC = () => {
     <Layout>
       <div className="aboutUs container">
         <h1 className="abouttitle">aboutUs</h1>
-
-
-
         <div>
           <YMaps>
             <Map defaultState={mapData}>

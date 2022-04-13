@@ -1,12 +1,12 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Layout from '../components/Layout/Layout';
-import Modal from '../components/Modal/Modal';
+import Layout from '../components/Layout';
+import Modal from '../components/Modal';
 import SideBar from '../components/SideBar';
 import style from '../components/SideBar/SideBar.module.scss';
 import { useTypedSelector } from '../components/hooks/useTypedSelector';
-import Column from '../components/Column/Column';
-import { ReactNode, useEffect, useState } from 'react';
+import Column from '../components/Column';
+import { useEffect } from 'react';
 import Cookie from 'js-cookie';
 import { useDispatch } from 'react-redux';
 import { add_to_redux_from_db, updateTasks } from '../store/actions/actions';
@@ -16,8 +16,6 @@ import { Autoplay } from 'swiper';
 import Swiper, { Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 
-import Image from 'next/image';
-import { object } from 'yup';
 
 Swiper.use([Navigation, Pagination]);
 Swiper.use([Autoplay]);

@@ -3,9 +3,6 @@ import style from './Modal.module.scss';
 import { useDispatch } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-// import * as types from '../../redux/actions/types';
-import { useSelector } from 'react-redux';
-// import { saveStartDate, saveTask } from '../../redux/actions/actions';
 import { useTypedSelector } from '../../components/hooks/useTypedSelector';
 import { Formik, Field, Form } from 'formik';
 import {
@@ -16,7 +13,6 @@ import {
 import {
   setFinishDate,
   setStartDate,
-  saveTask
 } from '../../store/actions/actions';
 
 import 'react-datepicker/dist/react-datepicker.css';

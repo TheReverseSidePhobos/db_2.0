@@ -1,9 +1,8 @@
 import Link from 'next/link';
 import {useTypedSelector} from '../hooks/useTypedSelector';
-import { logout } from '../../store/actions/actions';
 import { useDispatch } from 'react-redux';
 import style from './HeaderNav.module.scss';
-import Button from '../Button/Button';
+import Button from '../Button';
 
 const HeaderNav : React.FC = () => {
     

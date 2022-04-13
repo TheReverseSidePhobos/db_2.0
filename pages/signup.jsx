@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Layout from '../components/Layout/Layout';
+import Layout from '../components/Layout';
 import styles from '../styles/Signup.module.scss';
 import * as Yup from 'yup';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
