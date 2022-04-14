@@ -166,7 +166,9 @@ const Home: React.FC<any> = ({ data }) => {
       </Head>
       {alertShow && <Alert />}
 
-      <div className='swiper__title'><strong>Try Our App Right Now</strong></div>
+      <div className="swiper__title">
+        <strong>Try Our App Right Now</strong>
+      </div>
       <div className="mainContainerSwiper">
         <div>
           <img className="img" src={'/clipboard.png'} />

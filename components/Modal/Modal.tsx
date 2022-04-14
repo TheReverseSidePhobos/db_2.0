@@ -10,18 +10,22 @@ import {
   toggleInfoModal,
   toggleModal
 } from '../../store/actions/actions';
-import {
-  setFinishDate,
-  setStartDate,
-} from '../../store/actions/actions';
+import { setFinishDate, setStartDate } from '../../store/actions/actions';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import { convertDateFunc } from '../../utils/ustils';
 
 const Modal = () => {
   const dispatch = useDispatch();
-  const { dateFinish, dateWasMade, newTasks, inProgressTasks, doneTasks, infoModalShow, infoObj } =
-  useTypedSelector((state) => state.task);
+  const {
+    dateFinish,
+    dateWasMade,
+    newTasks,
+    inProgressTasks,
+    doneTasks,
+    infoModalShow,
+    infoObj
+  } = useTypedSelector((state) => state.task);
 
   let allTasks = [...newTasks, ...inProgressTasks, ...doneTasks];
 
@@ -190,8 +194,14 @@ const Modal = () => {
                   {touched.description && !values.description ? (
                     <div className={style.warning}>is required</div>
                   ) : null}
-                  <label htmlFor="" />
-                  <input name="" type={'checkbox'} />
+                  <div className={style.closeWindow}>
+                    <div className={style.input}>
+                      <input name="closeWindow" type={'checkbox'} />
+                    </div>
+                    <div>
+                      <label htmlFor="closeWindow">don't close the window</label>
+                    </div>
+                  </div>
                   <button
                     disabled={!values.name || !values.description}
                     className={
