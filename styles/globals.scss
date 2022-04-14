@@ -78,12 +78,13 @@ a {
 //ErrorPage
 
 //Swiper
-
+.swiper__title {
+  margin-top: 50px;
+  text-align: center;
+  margin-bottom: 10px;
+}
 .swiper {
   cursor: grab;
-  margin-top: 44px;
-  // max-width: 1300px;
-  height: 100px;
   .titleSwiper {
     font-weight: 700;
     line-height: 2;
@@ -106,10 +107,6 @@ a {
 }
 .swiper-wrapper {
   padding: 4px;
-  // max-width: max-content;
-  // .swiper-slide {
-  //   margin: 0 20px;
-  // }
 }
 .mainContainerSwiper {
   display: flex;
@@ -117,7 +114,6 @@ a {
   max-width: 1300px;
   margin: 0 auto;
   .img {
-    margin-top: 50px;
     max-width: 50px;
   }
 }

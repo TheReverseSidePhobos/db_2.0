@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@swiper/core": "^0.0.21",
     "axios": "^0.26.1",
     "classnames": "^2.3.1",
     "country-city-location": "^1.0.13",

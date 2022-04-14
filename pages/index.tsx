@@ -12,18 +12,18 @@ import { useDispatch } from 'react-redux';
 import { add_to_redux_from_db, updateTasks } from '../store/actions/actions';
 import Alert from '../components/Alert/Alert';
 import Cookies from 'js-cookie';
-import { Autoplay } from 'swiper';
-import Swiper, { Navigation, Pagination } from 'swiper';
-import 'swiper/css';
+import SwiperComponent from '../components/Swiper';
 
-
-Swiper.use([Navigation, Pagination]);
-Swiper.use([Autoplay]);
+// import { Autoplay } from 'swiper';
+// import Swiper, { Navigation, Pagination } from 'swiper';
+// import 'swiper/css';
+// Swiper.use([Navigation, Pagination]);
+// Swiper.use([Autoplay]);
 
 export async function getServerSideProps() {
   const res = await fetch(`${process.env.API_HOST}/example`);
   const data = await res.json();
-
+  // TODO: add try catch
   return { props: { data } };
 }
 const Home: React.FC<any> = ({ data }) => {
@@ -144,19 +144,19 @@ const Home: React.FC<any> = ({ data }) => {
     }
   };
 
-  setTimeout(() => {
-    new Swiper('.swiper', {
-      loop: true,
-      speed: 3000,
-      slidesPerView: 1,
-      spaceBetween: 30,
-      autoplay: {
-        disableOnInteraction: true
-      },
-      effect: 'fade'
-    });
+  // setTimeout(() => {
+  //   new Swiper('.swiper', {
+  //     loop: true,
+  //     speed: 3000,
+  //     slidesPerView: 1,
+  //     spaceBetween: 30,
+  //     autoplay: {
+  //       disableOnInteraction: true
+  //     },
+  //     effect: 'fade'
+  //   });
 
-  }, 500);
+  // }, 500);
 
   return (
     <Layout>
@@ -166,11 +166,13 @@ const Home: React.FC<any> = ({ data }) => {
       </Head>
       {alertShow && <Alert />}
 
+      <div className='swiper__title'><strong>Try Our App Right Now</strong></div>
       <div className="mainContainerSwiper">
         <div>
           <img className="img" src={'/clipboard.png'} />
         </div>
-        <div className="swiper swiper__container">
+        <SwiperComponent data={data} />
+        {/* <div className="swiper swiper__container">
           <div className="titleSwiper">Try to use our app</div>
           <div className="swiper-wrapper">
             {data &&
@@ -189,7 +191,7 @@ const Home: React.FC<any> = ({ data }) => {
           <div className="swiper-button-prev"></div>
           <div className="swiper-button-next"></div>
           <div className="swiper-scrollbar"></div>
-        </div>
+        </div> */}
       </div>
       <main className="page container">
         <div className={style.sidebar}>
