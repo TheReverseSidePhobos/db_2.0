@@ -1,4 +1,3 @@
 {
-  "extends": "plugin:react/recommended",
-  "parser": "babel-eslint"
+  "extends": "next/core-web-vitals"
 }
