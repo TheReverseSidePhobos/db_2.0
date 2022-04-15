@@ -230,7 +230,41 @@
 .closeWindow {
   margin-top: 10px;
   display: flex;
+  cursor: pointer;
   .input {
     margin-right: 10px;
   }
+}
+
+.name {
+  padding-left: 10px;
+  padding-top: 4px;
+  cursor: pointer;
+}
+.option {
+  display: block;
+  margin-bottom: 25px;
+}
+.check {
+  padding-left: 2.2em;
+  display: flex;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+.check__input {
+  -webkit-appearance: none;
+}
+.check__box {
+  margin-left: -2.5em;
+  width: 24px;
+  height: 24px;
+  background-image: url(/iconCheckboxOff.svg);
+  background-repeat: no-repeat;
+}
+
+.check__input:checked + .check__box {
+  background-image: url(/iconCheckboxOn.svg);
+}
+.check__input:focus + .check__box {
+  /* background-image: url(/img/icons/iconCheckboxOn.svg); */
 }

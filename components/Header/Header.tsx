@@ -4,12 +4,14 @@ import style from './Header.module.scss';
 
 const Header: React.FC = () => {
   return (
+    <>
     <header className={style.header}>
         <div className={style.headerWrapper}>
             <Burger />
             <HeaderNav/>
         </div>
     </header>
+    </>
   );
 };
 

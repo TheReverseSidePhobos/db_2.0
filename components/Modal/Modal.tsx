@@ -27,11 +27,13 @@ const Modal = () => {
     infoObj
   } = useTypedSelector((state) => state.task);
 
+  const [closeWindow, setCloseWindow] = useState(true);
+
   let allTasks = [...newTasks, ...inProgressTasks, ...doneTasks];
 
   const handleCloseModal = () => {
-    dispatch(toggleInfoModal(false));
-    dispatch(toggleModal(false));
+      dispatch(toggleInfoModal(false));
+      dispatch(toggleModal(false));
   };
 
   const setDateFinish = (dateFinished: any) => {
@@ -142,7 +144,9 @@ const Modal = () => {
                 };
                 handleSubmit(task);
                 resetForm();
-                handleCloseModal();
+                if (closeWindow) {
+                  handleCloseModal();
+                }
               }}
             >
               {({ errors, touched, values }) => (
@@ -194,14 +198,15 @@ const Modal = () => {
                   {touched.description && !values.description ? (
                     <div className={style.warning}>is required</div>
                   ) : null}
-                  <div className={style.closeWindow}>
-                    <div className={style.input}>
-                      <input name="closeWindow" type={'checkbox'} />
-                    </div>
-                    <div>
-                      <label htmlFor="closeWindow">don't close the window</label>
-                    </div>
-                  </div>
+                  <label className={`${style.check} ${style.option}`}>
+                    <input
+                      type="checkbox"
+                      onChange={(e) => setCloseWindow(!closeWindow)}
+                      className={style.check__input}
+                    />
+                    <span className={style.check__box}></span>
+                    <span className={style.name}>Don't close the window</span>
+                  </label>
                   <button
                     disabled={!values.name || !values.description}
                     className={

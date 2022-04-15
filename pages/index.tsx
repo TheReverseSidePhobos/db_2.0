@@ -194,7 +194,9 @@ const Home: React.FC<any> = ({ data }) => {
           <div className="swiper-button-next"></div>
           <div className="swiper-scrollbar"></div>
         </div> */}
+      
       </div>
+
       <main className="page container">
         <div className={style.sidebar}>
           <SideBar />
@@ -219,7 +221,7 @@ const Home: React.FC<any> = ({ data }) => {
         </div>
 
         {modalShow && <Modal />}
-        {infoModalShow && <Modal />}
+        {/* {infoModalShow && <Modal />} */}
       </main>
     </Layout>
   );
