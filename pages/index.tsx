@@ -21,10 +21,19 @@ import SwiperComponent from '../components/Swiper';
 // Swiper.use([Autoplay]);
 
 export async function getServerSideProps() {
-  const res = await fetch(`${process.env.API_HOST}/example`);
-  const data = await res.json();
+  try {
+    const res = await fetch(`${process.env.API_HOST}/example`);
+    const data = await res.json();
+    if (!data) {
+      return {
+        notFound: true
+      };
+    }
+    return { props: { data } };
+  } catch (error) {
+    return { props: null };
+  }
   // TODO: add try catch
-  return { props: { data } };
 }
 const Home: React.FC<any> = ({ data }) => {
   const {
@@ -194,7 +203,6 @@ const Home: React.FC<any> = ({ data }) => {
           <div className="swiper-button-next"></div>
           <div className="swiper-scrollbar"></div>
         </div> */}
-      
       </div>
 
       <main className="page container">
