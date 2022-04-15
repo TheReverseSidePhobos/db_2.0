@@ -32,8 +32,8 @@ const Modal = () => {
   let allTasks = [...newTasks, ...inProgressTasks, ...doneTasks];
 
   const handleCloseModal = () => {
-      dispatch(toggleInfoModal(false));
-      dispatch(toggleModal(false));
+    dispatch(toggleInfoModal(false));
+    dispatch(toggleModal(false));
   };
 
   const setDateFinish = (dateFinished: any) => {
@@ -205,7 +205,7 @@ const Modal = () => {
                       className={style.check__input}
                     />
                     <span className={style.check__box}></span>
-                    <span className={style.name}>Don't close the window</span>
+                    <span className={style.name}>Don t close the window</span>
                   </label>
                   <button
                     disabled={!values.name || !values.description}

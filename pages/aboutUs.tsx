@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
 
-
-const aboutUs: React.FC = () => {
+const AboutUs: React.FC = () => {
   const [latitude, setLatitude] = useState('');
   const [longitude, setLongitude] = useState('');
   useEffect(() => {
@@ -39,4 +38,4 @@ const aboutUs: React.FC = () => {
   );
 };
 
-export default aboutUs;
+export default AboutUs;

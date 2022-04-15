@@ -23,7 +23,7 @@ const SwiperComponent: React.FC<any> = (data: any) => {
     >
       {data.data &&
         data.data.map((item: any) => (
-          <SwiperSlide>
+          <SwiperSlide key={item.id}>
             <div className={style.itemInfo}>
               <div>
                 <strong>{item.name}</strong>
