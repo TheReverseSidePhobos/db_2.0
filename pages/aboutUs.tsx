@@ -27,8 +27,8 @@ const AboutUs: React.FC = () => {
         <div>
           <YMaps>
             <Map defaultState={mapData}>
-              {coordinates.map((coordinate) => (
-                <Placemark geometry={coordinate} />
+              {coordinates.map((coordinate, i) => (
+                <Placemark geometry={coordinate} key={i}/>
               ))}
             </Map>
           </YMaps>
