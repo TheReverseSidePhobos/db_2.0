@@ -42,6 +42,13 @@ a {
     flex-direction: column;
   }
 }
+.upArrow {
+  position: fixed;
+  right: 70px;
+  bottom: 70px;
+  cursor: pointer;
+}
+
 
 //aboutUs
 .aboutUs {

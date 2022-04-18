@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useTypedSelector } from '../hooks/useTypedSelector';
 import Button from '../Button';
 import {
-  alertShow,
+  alertShowAC,
   setStartDate,
   toggleModal
 } from '../../store/actions/actions';
@@ -34,9 +34,9 @@ const SideBar: React.FC = () => {
     Cookie.set('inProgressTasks', JSON.stringify(progress));
     Cookie.set('doneTasks', JSON.stringify(dones));
 
-    dispatch(alertShow(true));
+    dispatch(alertShowAC(true));
     setTimeout(() => {
-      dispatch(alertShow(false));
+      dispatch(alertShowAC(false));
     }, 3000);
   };
 

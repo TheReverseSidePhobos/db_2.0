@@ -1,26 +1,51 @@
 @import '../../styles/colors.scss';
 
 .alert {
-  margin-top: 50px;
-  margin-bottom: -50px;
   position: fixed;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: $light-green;
-  font-size: 18px;
-  font-weight: 500;
-  border-radius: 15px 15px 100px 100px;
-  min-height: 40px;
-  min-width: 100%;
-  background-color: #e5edf1;
-  z-index: 100;
-  border: 1px solid #000;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  z-index: 2;
 
+  .content {
+    position: relative;
+    width: 700px;
+    height: 500px;
+    background-color: #e6eef1;
+    margin: 10% auto;
+    padding: 20px;
+    padding-top: 100px;
+    border-radius: 14px;
+  }
+
+  .img {
+    width: 150px;
+    margin: 0px auto;
+  }
+  .text {
+    margin-top: 70px;
+    text-align: center;
+    font-size: 30px;
+  }
+  .popup__close {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 20px;
+    color: $black;
+    text-decoration: none;
+    &:hover {
+      cursor: pointer;
+      transition: 0.5s all ease;
+      color: $danger;
+      transform: rotate(90deg);
+    }
+  }
   .closeAlert {
     position: absolute;
-    color: $white;
+    color: cadetblue;
     right: 10px;
     top: 5px;
     cursor: pointer;

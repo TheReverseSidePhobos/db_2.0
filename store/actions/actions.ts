@@ -177,7 +177,7 @@ export const saveObjForInfo = (infoObj: {}) => {
     payload: infoObj
   };
 };
-export const alertShow = (bool: boolean) => {
+export const alertShowAC = (bool: boolean) => {
   return {
     type: TaskActionTypes.ALERT_SHOW,
     payload: bool
