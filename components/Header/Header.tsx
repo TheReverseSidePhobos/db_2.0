@@ -1,3 +1,4 @@
+import React from 'react';
 import Burger from '../Burger';
 import HeaderNav from '../HeaderNav';
 import style from './Header.module.scss';
@@ -5,12 +6,12 @@ import style from './Header.module.scss';
 const Header: React.FC = () => {
   return (
     <>
-    <header className={style.header}>
+      <header className={style.header}>
         <div className={style.headerWrapper}>
-            <Burger />
-            <HeaderNav/>
+          <Burger />
+          <HeaderNav />
         </div>
-    </header>
+      </header>
     </>
   );
 };

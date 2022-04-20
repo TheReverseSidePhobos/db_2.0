@@ -1,12 +1,11 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Layout from '../components/Layout';
-import Modal from '../components/Modal';
 import SideBar from '../components/SideBar';
 import style from '../components/SideBar/SideBar.module.scss';
 import { useTypedSelector } from '../components/hooks/useTypedSelector';
 import Column from '../components/Column';
-import { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Cookie from 'js-cookie';
 import { useDispatch } from 'react-redux';
 import { add_to_redux_from_db, updateTasks } from '../store/actions/actions';
@@ -16,6 +15,8 @@ import SwiperComponent from '../components/Swiper';
 import Up_arrow from '../public/up_arrow.svg';
 import Image from 'next/image';
 import { alertShowAC } from '../store/actions/actions';
+// const Modal = React.lazy(() => import('../components/Modal'));
+import Modal from '../components/Modal';
 
 // import { Autoplay } from 'swiper';
 // import Swiper, { Navigation, Pagination } from 'swiper';
@@ -268,8 +269,14 @@ const Home: React.FC<any> = ({ data }) => {
             handleSorting={handleSorting}
           />
         </div>
-
-        {modalShow && <Modal />}
+        {
+          modalShow && <Modal />
+        }
+        {/* {
+          <React.Suspense fallback={<div>Loading...</div>}>
+            {modalShow && <Modal />}
+          </React.Suspense>
+        } */}
         {/* {infoModalShow && <Modal />} */}
       </main>
     </Layout>

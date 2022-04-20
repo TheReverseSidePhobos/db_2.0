@@ -18,7 +18,7 @@ const AboutUs: React.FC = () => {
     zoom: 5
   };
   //56.3287, 44.002
-  const coordinates = [[parseInt(latitude), parseInt(longitude)]];
+  const coordinates = [[parseInt('56.3287'), parseInt('44.002')]];
 
   return (
     <Layout>
@@ -28,7 +28,7 @@ const AboutUs: React.FC = () => {
           <YMaps>
             <Map defaultState={mapData}>
               {coordinates.map((coordinate, i) => (
-                <Placemark geometry={coordinate} key={i}/>
+                <Placemark geometry={coordinate} key={i} />
               ))}
             </Map>
           </YMaps>
